@@ -1,7 +1,7 @@
 <template>
     <v-footer class="bg-background d-flex flex-column pa-0">
         <div class="d-flex w-100 align-center top-border px-10">
-            <strong>This website is open-source on Github <a href="https://github.com/Sean-Fuhrman">here</a>!</strong>
+            <strong>This website is open-source on Github <a href="https://github.com/Sean-Fuhrman/seanfuhrman.com">here</a>!</strong>
 
             <v-spacer></v-spacer>
 
