@@ -6,14 +6,14 @@
 
 // Components
 import App from './App.vue'
-import MyIntroduction from '@/components/MyIntroduction.vue'
-import AboutMe from '@/components/AboutMe.vue'
+import MyIntroduction from './components/MyIntroduction.vue'
+import AboutMe from './components/AboutMe.vue'
 
 // Composables
 import { createApp } from 'vue'
 
 // Plugins
-import { registerPlugins } from '@/plugins'
+import { registerPlugins } from './plugins'
 import {createRouter, createWebHashHistory } from 'vue-router'
 
 

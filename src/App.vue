@@ -58,11 +58,11 @@ export default {
   } 
 
   .stars{
-      background: black url(src/assets/stars.png) repeat top center;
+      background: black url(/src/assets/stars.png) repeat top center;
       z-index: 0;
   }
   .twinkle {
-      background: transparent url(src/assets/twinkling.png) repeat top center;
+      background: transparent url(/src/assets/twinkling.png) repeat top center;
       z-index: 1;
       animation: move-twinkling 20s linear infinite;
   }

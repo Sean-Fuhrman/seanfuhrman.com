@@ -20,13 +20,13 @@
                                 :class="props.class"
                             ></v-btn>
                         </template>
-                            <v-carousel-item src="src/assets/carousel/IMG_6810.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6807.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6793-2.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6812-2.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6815.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6813.jpg"></v-carousel-item>
-                            <v-carousel-item src="src/assets/carousel/IMG_6816.jpg"></v-carousel-item>
+                            <v-carousel-item :src="img1"></v-carousel-item>
+                            <v-carousel-item :src="img2"></v-carousel-item>
+                            <v-carousel-item :src="img3"></v-carousel-item>
+                            <v-carousel-item :src="img4"></v-carousel-item>
+                            <v-carousel-item :src="img5"></v-carousel-item>
+                            <v-carousel-item :src="img6"></v-carousel-item>
+                            <v-carousel-item :src="img7"></v-carousel-item>
                         <template v-slot:next="{ props }">
                             <v-btn
                                 size="xx-small"
@@ -55,3 +55,20 @@
     </v-container>  
 </template>
 
+<script>
+import img1 from "/src/assets/IMG_6810.jpg"
+import img2 from "/src/assets/IMG_6807.jpg"
+import img3 from "/src/assets/IMG_6793-2.jpg"
+import img4 from "/src/assets/IMG_6812-2.jpg"
+import img5 from "/src/assets/IMG_6815.jpg"
+import img6 from "/src/assets/IMG_6813.jpg"
+import img7 from "/src/assets/IMG_6816.jpg"
+
+export default {
+    data() {
+        return {
+            img1, img2, img3, img4, img5, img6, img7,
+        }
+    }
+}
+</script>
