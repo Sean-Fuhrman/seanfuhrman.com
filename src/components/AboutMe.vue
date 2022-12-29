@@ -1,15 +1,16 @@
 <template>
     <v-container :class=this.$root.componentClass>
-        <v-row>
+        <v-row justify="space-between">
             <v-col>
-                <h1> About Me </h1>
-            </v-col>
+                <div class="d-flex w-100 align-space-between px-10">
+                    <h1> About Me </h1>
 
-            <v-col cols="2">
-                <v-btn :href="resume"> 
-                    Resume 
-                    <v-icon>mdi-open-in-new</v-icon>
-                </v-btn> 
+                    <v-spacer></v-spacer>
+                    <v-btn :href="resume"> 
+                        Resume 
+                        <v-icon>mdi-open-in-new</v-icon>
+                    </v-btn> 
+                </div>
             </v-col>
         </v-row>
 

@@ -2,26 +2,28 @@
     <v-container :class=this.$root.componentClass>
         <h1>Timeline</h1>
         <v-timeline justify="center">
-            <v-timeline-item
-            v-for="(item, i) in items"
-            :key="i"
-            :dot-color="item.color"
-            :icon="item.icon"
-            fill-dot
-            max-width="80%"
-            >
-                <template v-slot:opposite>
-                    {{item.date }}
-                </template>
-                <v-card>
-                    <v-card-title :class="['text-h6', `bg-${item.color}`]">
-                    {{item.title}}
-                    </v-card-title>
-                    <v-card-text class="pt-2 bg-white text--primary text-body-1">
-                    <p>{{ item.text }}</p>
-                    </v-card-text>
-                </v-card>
-            </v-timeline-item>
+          <v-scroll-x-transition group>
+              <v-timeline-item
+              v-for="(item, i) in items"
+              :key="i"
+              :dot-color="item.color"
+              :icon="item.icon"
+              fill-dot
+              max-width="80%"
+              >
+                  <template v-slot:opposite>
+                      {{item.date }}
+                  </template>
+                  <v-card>
+                      <v-card-title :class="['text-h6', `bg-${item.color}`]">
+                      {{item.title}}
+                      </v-card-title>
+                      <v-card-text class="pt-2 bg-white text--primary text-body-1">
+                      <p>{{ item.text }}</p>
+                      </v-card-text>
+                  </v-card>
+              </v-timeline-item>
+            </v-scroll-x-transition>
         </v-timeline>
     </v-container>
     
