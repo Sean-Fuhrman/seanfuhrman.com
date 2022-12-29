@@ -63,7 +63,7 @@ import img7 from "/src/assets/IMG_6816.jpg"
 export default {
     data() {
         return {
-            images : [img1, img2, img3, img4, img5, img6, img7]
+            images : [img1]
         }
     }
 }

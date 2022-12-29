@@ -28,7 +28,7 @@
 
 
 <script>
-import resume from '/src/assets/Resume_2022_Dec_9.pdf'
+import resume from '/src/assets/Resume.pdf'
 
 export default{
     data () {
