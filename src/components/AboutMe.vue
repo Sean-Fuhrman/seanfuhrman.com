@@ -6,26 +6,39 @@
             </v-col>
 
             <v-col cols="2">
-                <v-btn class=""> Resume </v-btn> 
+                <v-btn :href="resume"> 
+                    Resume 
+                    <v-icon>mdi-open-in-new</v-icon>
+                </v-btn> 
             </v-col>
         </v-row>
 
         <v-row>
             <v-col>
-                <p class="ma-3 body-text" color="text">
-                Welcome to my website! I’m Sean Fuhrman and currently in my 3rd year at University of California San Diego studying Computer Engineering.
-                I also assist with research at Systems Energy Efficiency Lab (link to lab?) , where I help research Hyper-dimensional Computing 
-                and it's use for machine learning algorithms that run well on low power edge devices.
-                <br/><br/>In my free time, I like to work on side projects, ski, hike, and explore the world! 
+                <p class="ma-3 body-text">
+                Welcome to my website! <br/> <br/> I’m Sean Fuhrman, I'm in my 3rd year studying Computer Engineering at University of California San Diego.
+                I also assist with research at Systems Energy Efficiency Lab, where I help research <a href="http://varys.ucsd.edu/research/">Hyperdimensional-Computing</a>.
+                In my free time, I like to work on side projects, ski, hike, and explore the world! 
                 </p>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
+
+<script>
+import resume from '/src/assets/Resume_2022_Dec_9.pdf'
+
+export default{
+    data () {
+        return {
+            resume,
+        }
+    }
+}
+</script>
 <style>
 .body-text {
-    font-size: large;
+    font-size: 20px;
 }
-
 </style>

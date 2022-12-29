@@ -8,7 +8,7 @@
             :dot-color="item.color"
             :icon="item.icon"
             fill-dot
-            max-width="400"
+            max-width="80%"
             >
                 <template v-slot:opposite>
                     {{item.date }}
