@@ -1,8 +1,8 @@
 <template>
-    <v-container :class=this.$root.componentClass>
+    <v-container fluid class="bg-white" elevation="2">
         <v-row justify="space-between">
             <v-col>
-                <div class="d-flex w-100 align-space-between px-10">
+                <div class="d-flex w-100 align-space-between pr-10">
                     <h1> About Me </h1>
 
                     <v-spacer></v-spacer>

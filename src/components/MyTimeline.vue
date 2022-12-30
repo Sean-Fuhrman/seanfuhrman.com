@@ -1,6 +1,6 @@
 <template>
     <v-container :class=this.$root.componentClass>
-        <h1>Timeline</h1>
+        <h1>Portfolio</h1>
         <v-timeline justify="center">
           <v-scroll-x-transition group>
               <v-timeline-item
@@ -9,7 +9,7 @@
               :dot-color="item.color"
               :icon="item.icon"
               fill-dot
-              max-width="80%"
+              width="100%"
               >
                   <template v-slot:opposite>
                       {{item.date }}

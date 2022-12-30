@@ -3,7 +3,7 @@
         <v-row class="mt-4 fill-height" align-content="center" justify="center">
             <v-col cols="12">
                 <v-sheet max-width="400" class="mx-auto bg-transparent">
-                    <v-carousel 
+                    <!-- <v-carousel 
                         eager
                         hide-delimiters
                         cycle
@@ -33,7 +33,8 @@
                                 :class="props.class"
                             ></v-btn>
                         </template>
-                    </v-carousel>
+                    </v-carousel> -->
+                    <v-img class="rounded-circle" :src="images[0]" height="100%" eager/>
                 </v-sheet>
                 
                 <h1 center class="mt-5 text-center" color="secondary">Sean Fuhrman </h1>

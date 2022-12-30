@@ -7,8 +7,8 @@
             @click="callScroll('about')"
         >About</v-btn>
         <v-btn 
-            @click="callScroll('timeline')"
-        >Timeline</v-btn>
+            @click="callScroll('portfolio')"
+        >Portfolio</v-btn>
     </v-app-bar>
 </template>
 

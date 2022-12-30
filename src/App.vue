@@ -6,7 +6,7 @@
           <div class="twinkle">
             <my-introduction ref="home"/>
             <about-me ref="about"/>
-            <my-timeline ref="timeline"/>
+            <my-timeline ref="portfolio"/>
           </div>
         </div>
         <my-footer/>
