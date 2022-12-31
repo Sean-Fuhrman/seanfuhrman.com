@@ -26,7 +26,7 @@ export default {
   mounted() {
     this.createBackground(400);
 
-    window.setInterval(this.updateStars, 50);
+    window.setInterval(this.updateStars, 5);
   },
   data () {
     return{
@@ -71,7 +71,7 @@ export default {
       },
       updateStars(){
         for(let i = 0; i < this.stars.length; i++){ 
-          let shift = this.distances[i] * 1.5;
+          let shift = this.distances[i] * 2;
           let newX = this.stars[i].getBoundingClientRect().left + shift;
           if(newX > document.body.getBoundingClientRect().right) {
             newX = -10;
