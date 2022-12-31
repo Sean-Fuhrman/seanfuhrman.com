@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="bg-white" elevation="2">
+    <v-container class="bg-white" fluid>
         <v-row justify="space-between">
             <v-col>
                 <div class="d-flex w-100 align-space-between pr-10">
