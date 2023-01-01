@@ -2,10 +2,16 @@
   <v-app>
     <app-bar/>
       <v-main>
-        <div class="background" id="myBackground">
-            <my-introduction ref="home"/>
-            <about-me ref="about"/>
-            <my-timeline ref="portfolio"/>
+        <div class="star1">
+          <div class="star2">
+            <div class="star3">
+              <div class="star4">
+                <my-introduction ref="home"/>
+                <about-me ref="about"/>
+                <my-timeline ref="portfolio"/>
+              </div>
+            </div>
+          </div>
         </div>
         <my-footer/>
       </v-main>
@@ -24,9 +30,9 @@ import star from './assets/star.png'
 
 export default {
   mounted() {
-    this.createBackground(400);
+    // this.createBackground(400);
 
-    window.setInterval(this.updateStars, 5);
+    // window.setInterval(this.updateStars, 5);
   },
   data () {
     return{
@@ -47,7 +53,6 @@ export default {
         let xPos = Math.random() * 100;
         let size = 20 * distance;
         this.distances.push(distance)
-
         newStar.style.position = "absolute"
         newStar.style.top= yPos + "%";
         newStar.style.left= xPos + "%";
@@ -60,7 +65,7 @@ export default {
       },
       createBackground(numStars) {
         //two-thirds of the stars are 'far' stars
-        for(let i = 0; i < 2* numStars/3; i++){
+        for(let i = 0; i < 2 * numStars/3; i++){
           this.createStar(Math.random() / 4);
         }
         
@@ -70,14 +75,16 @@ export default {
         }
       },
       updateStars(){
-        for(let i = 0; i < this.stars.length; i++){ 
-          let shift = this.distances[i] * 2;
-          let newX = this.stars[i].getBoundingClientRect().left + shift;
+        let len = this.stars.length;
+        let shift, newX, i;
+        for(i = 0; i < len; i++){ 
+          shift = this.distances[i] * 2;
+          newX = this.stars[i].getBoundingClientRect().left + shift;
+
           if(newX > document.body.getBoundingClientRect().right) {
             newX = -10;
           }
           this.stars[i].style.left = newX + "px";
-  
         }
       }
   },
@@ -90,4 +97,29 @@ export default {
     scroll-margin: 60px; 
     z-index: 1;
   } 
+  @keyframes background-slide {
+    from {background-position: 0px 0px;}
+    to {background-position: 0px -4000px;}
+  }
+
+  .star1 {
+    background: black url('/src/assets/stars.png') repeat top center;
+    background-size: 2000px auto;
+    animation: background-slide 100s linear infinite;
+  }
+  .star2 {
+    background: transparent url('/src/assets/stars.png') repeat top center;
+    background-size: 1000px auto;
+    animation: background-slide 200s linear infinite;
+  }
+  .star3 {
+    background: transparent url('/src/assets/stars.png') repeat top center;
+    background-size: 800px auto;
+    animation: background-slide 300s linear infinite;
+  }
+  .star4 {
+    background: transparent url('/src/assets/stars.png') repeat top center;
+    background-size: 500px auto;
+    animation: background-slide 400s linear infinite;
+  }
 </style>
