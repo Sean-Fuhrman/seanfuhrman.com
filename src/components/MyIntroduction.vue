@@ -40,7 +40,7 @@
                 <h1 center class="mt-5 text-center" color="secondary">Sean Fuhrman </h1>
                 <p class="text-center">
                 Computer Engineering Student | University of California San Diego <br/>
-                Hiking | Sking | Exploring
+                Hiking | Skiing | Exploring
                 </p>
                 <div class="d-flex justify-center align-center">
                     <v-btn class="bg-transparent" elevation="0"  icon="mdi-github" href="https://github.com/Sean-Fuhrman"></v-btn> 
