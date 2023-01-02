@@ -104,22 +104,22 @@ export default {
 
   .star1 {
     background: black url('/src/assets/stars.png') repeat top center;
-    background-size: 2000px auto;
+    background-size: auto 2000px;
     animation: background-slide 100s linear infinite;
   }
   .star2 {
     background: transparent url('/src/assets/stars.png') repeat top center;
-    background-size: 1000px auto;
+    background-size: auto 1000px;
     animation: background-slide 200s linear infinite;
   }
   .star3 {
     background: transparent url('/src/assets/stars.png') repeat top center;
-    background-size: 800px auto;
+    background-size: auto 800px;
     animation: background-slide 300s linear infinite;
   }
   .star4 {
     background: transparent url('/src/assets/stars.png') repeat top center;
-    background-size: 500px auto;
+    background-size: auto 500px;
     animation: background-slide 400s linear infinite;
   }
 </style>
