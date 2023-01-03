@@ -44,7 +44,7 @@
           color: 'primary',
           icon: 'mdi-led-on',
           title: 'LED infinity mirror',
-          text: 'I built and programmed a LED infinity mirror that utilized Arduino. More details are on my Github here.',
+          text: 'I built and programmed a LED infinity mirror that utilized Arduino.',
           date: 'September 2020'
         },
         {
@@ -58,7 +58,7 @@
           color: 'primary',
           icon: 'mdi-chip',
           title: 'Room Automation System',
-          text: 'I created a microcontroller system to act as “assistant” via voice commands that\'s capable of controlling lights, raising my blinds, telling the weather, and playing music. More details are on my Github here.',
+          text: 'I created a microcontroller system to act as “assistant” via voice commands that\'s capable of controlling lights, raising my blinds, telling the weather, and playing music.',
           date: '2016 - 2020'
         },
         {
