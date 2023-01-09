@@ -6,7 +6,7 @@
             <v-spacer></v-spacer>
 
             <v-btn class="bg-transparent" elevation="0"  icon="mdi-github" href="https://github.com/Sean-Fuhrman"></v-btn>
-            <v-btn class="bg-transparent"  elevation="0"  icon="mdi-linkedin" href="www.linkedin.com/in/sean-fuhrman"></v-btn>
+            <v-btn class="bg-transparent"  elevation="0"  icon="mdi-linkedin" href="https://linkedin.com/in/sean-fuhrman"></v-btn>
             <v-btn class="bg-transparent"  elevation="0"  icon="mdi-gmail" href="mailto: seantfuhrman@gmail.com"></v-btn>
         </div>
     </v-footer>
