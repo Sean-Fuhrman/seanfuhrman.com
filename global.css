@@ -1,0 +1,471 @@
+* { /* variables and reset */
+  --text-color : #C5C6C7;
+  --text-highlight-color: #cc9767;
+  --foreground-color : #212329;
+  --background-color: #cc9767;
+  --portfolio-text-color : white;
+  --portfolio-background-color : #001220;
+  --portfolio-item-text-color : white; 
+  --portfolio-item-background-color : black;
+  --portfolio-highlight-color : #47e37b;
+  font-family: 'Playfair Display', 'serif';
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Set height and overflow to prevent animations extending page height */
+main {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+body{
+  background-color: var(--background-color);
+}
+
+/* Animations */
+@keyframes line-animate {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    transform: scaleY(0.7);
+    opacity: 0;
+  }
+  to{
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  from{
+    height: 95%;
+    width: 95%;
+  }
+  to {
+    height: 100%;
+    width : 100%;
+  }
+}
+
+@keyframes scale-page-down {
+  from {
+    transform: scaleY(1);
+
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes move-page-up {
+  from {
+    top: 100%;
+  }
+  to {
+    top : 0%;
+  }
+}
+
+@keyframes expand-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Animations for homepage on load */
+.fade-in-animate {
+  animation: 0.6s ease-in-out 0s 1 forwards fade-in;
+  transform-origin: top center;
+  opacity: 0;
+}
+.fade-in-delay1-animate {
+  animation: 0.6s ease-in-out 0.6s 1 forwards fade-in;
+  transform-origin: top center;
+  opacity: 0;
+}
+
+.fade-in-delay2-animate {
+  animation: 0.6s ease-in-out 1.2s 1 forwards fade-in;
+  transform-origin: top center;
+  opacity: 0;
+}
+/* end of homepage on load animations */
+
+/* Animations triggered by View Portfolio Button, in order of delay*/
+.top-close-animate {
+  animation: 0.6s ease-in 0s 1 forwards reverse line-animate;
+}
+.bottom-close-animate {
+  animation: 0.6s ease-in 0.6s 1 forwards reverse line-animate;
+ 
+}
+
+.foreground-close-animate {
+  animation: 0.4s ease-in 1.2s 1 forwards expand, 0.6s ease-in 1.6s 1 forwards scale-page-down;
+  transform-origin: top center;
+}
+
+.homepage-close-animate{
+  animation:  1s ease-in 1.6s 1 forwards scale-page-down; 
+  transform-origin: top center;
+}
+
+.portfolio-open-animate{
+  animation:  0.6s ease-in 1.6s 1 move-page-up;
+}
+/* end of View Portfolio animations */
+
+
+/*Animations triggered by Back Home Buttom, in order of dely*/
+.portfolio-close-animate{
+  animation:  0.6s ease-in 0s 1 reverse move-page-up;
+}
+
+.homepage-open-animate{
+  animation:  0.6s ease-in 0s 1 forwards reverse scale-page-down; 
+  transform-origin: top center;
+}
+
+.foreground-open-animate {
+  width: 100%;
+  height: 100%;
+  animation: 0.4s ease-in 0.8s 1 forwards reverse expand, 0.8s ease-in 0s 1 forwards reverse  scale-page-down;
+  transform-origin: top center;
+}
+
+.bottom-open-animate {
+  animation: 0.6s ease-in 1.2s 1 forwards line-animate;
+  transform: scaleX(0);
+}
+
+.top-open-animate {
+  animation: 0.6s ease-in 1.8s 1 forwards line-animate;
+  transform: scaleX(0);
+}
+
+/* end of Back Home animations */
+
+/* Homepage css */
+i,strong{
+  color: var(--text-highlight-color);
+}
+
+
+@keyframes background-slide {
+  from {background-position: 0px 0px;}
+  to {background-position: 0px -4000px;}
+}
+
+#stars {
+  background: var(--foreground-color) url('/assets/stars.png') repeat top center;
+  background-size: auto 1000px;
+  animation: 200s linear 0s infinite background-slide;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+#foreground {
+  background: var(--foreground-color);
+  gap: 2rem;
+}
+
+#foreground h1{
+  text-align: center;
+  color: var(--text-color);
+  font-size: 2.4rem;
+}
+
+#foreground p {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  line-height: 2rem;
+  max-width: min(80vw, 500px);
+  padding: 10px;
+}
+
+#foreground button {
+  color: var(--text-color);
+  background-color: transparent;
+  padding : 0.8rem;
+  font-size: 1.2rem;
+  border: var(--text-highlight-color) 8px double;
+  border-radius: 8px;
+  cursor: pointer;
+} 
+
+#foreground section {
+  display: flex;
+  justify-content: center;
+  gap : 20px;
+  align-items: center;
+}
+
+#resume-button {
+  color: var(--text-color);
+  background-color: transparent;
+  padding : 0.8rem;
+  font-size: 1.2rem;
+  border: var(--text-highlight-color) 8px double;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#view-portfolio-button:hover, #resume-button:hover{
+  filter: brightness(0.7)
+}
+
+#homepage{
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#top-line {
+  height: 0.7rem;
+  width: min(40%, 300px);
+  background-color: var(--text-highlight-color);
+  transform-origin: bottom left;
+  color: var(--text-color);
+  position: absolute;
+  left : 0%;
+  top : 10%;
+  border: 0px;
+}
+
+#bottom-line {
+  height: 0.7rem;
+  width: min(40%, 300px);
+  background-color: var(--text-highlight-color);
+  transform-origin: bottom right;
+  color: var(--text-color);
+  position: absolute;
+  right : 0;
+  bottom : 10%;
+  border: 0px;
+}
+
+/* Portfolio css */
+
+#back-home-button {
+  padding : 0.8rem;
+  font-size: 1rem;
+  border: var(--portfolio-text-color) 8px double;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--portfolio-text-color);
+}
+
+#back-home-button:hover {
+  filter: brightness(0.8);
+}
+
+#portfolio h2 {
+  text-align: center;
+  font-size: 2.0rem;
+}
+
+#portfolio header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  background-color: var(--portfolio-background-color);
+  align-items: center;
+  width: 40%;
+  padding: 10px 20px;
+  margin: auto;
+  position: absolute;
+  left: 30%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+@media screen and (min-width: 750px) {
+  #portfolio {
+    grid-template-rows: 200px 50px 420px;
+    grid-template-columns: 1fr 650px 1fr;
+  }
+  #portfolio header {
+    grid-row: 1 / 2;
+    grid-column: 1 / 4;
+  }
+  #slider-counter {
+    grid-row: 2 / 3;
+    grid-column: 1 / 4;
+  }
+  #slider {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+  }
+  #left-button {
+    justify-self: flex-end;
+    align-self: center;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+  #right-button {
+    justify-self: flex-start;
+    align-self: center;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #portfolio {
+    grid-template-rows: 200px 50px 420px 50px;
+    grid-template-columns: 1fr 1fr;
+  }
+  #portfolio header {
+    grid-row: 1 / 2;
+    grid-column: 1 / 3;
+  }
+  #slider-counter {
+    grid-row: 2 / 3;
+    grid-column: 1 / 3;
+  }
+  #slider {
+    grid-row: 3 / 4;
+    grid-column: 1 / 3;
+  }
+  #left-button {
+    justify-self: center;
+    align-self: center;
+    grid-row: 4 / 5;
+    grid-column: 1 / 2;
+  }
+  #right-button {
+    justify-self: center;
+    align-self: center;
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+  }
+}
+
+#portfolio {
+  position: absolute;
+  height : 100%;
+  width: 100%;
+  color: var(--portfolio-text-color);
+  z-index: 0;
+  background: url(/assets/green-waves.svg) repeat-x top center;
+  background-size: 800px auto;
+  display: grid;
+}
+
+#slider {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  transform-style: preserve-3d;
+}
+
+#left-button, #right-button {
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--portfolio-highlight-color);
+  border-radius: 50%;
+  border: 4px double var(--portfolio-highlight-color);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#left-button:hover, #right-button:hover {
+  filter: brightness(0.7);
+}
+#slider-counter {
+  width : 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#slider-counter span {
+  height: 15px;
+  width: 15px;
+  background-color: #033d32;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.selected {
+  background-color: var(--portfolio-highlight-color)!important;
+}
+
+/* Css for portfolio item within slider */
+portfolio-item {
+  position: absolute;
+  width: 40%;
+  top : 0%;
+  opacity: 1;
+  transform: translate3d(0%, 0%, -200px) scale(0.8);
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+  height : 400px;
+}
+
+/* Positions that handle moving slider  */
+.position1 {
+  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
+  opacity: 1;
+  transform: translate3d(-55%, 0%, -120px) scale(0.8);
+ 
+}
+
+.position2 {
+  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
+  opacity: 1;
+  transform: translate3d(-25%, 0%, -60px) scale(0.9);
+
+}
+
+.position3 {
+  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
+  opacity: 1;
+  transform: translate3d(0%, 0%, 0px) scale(1.0);
+}
+
+.position4 {
+  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
+  opacity: 1;
+  transform: translate3d(25%, 0%, -60px) scale(0.9);
+}
+
+.position5 {
+  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
+  opacity: 1;
+  transform: translate3d(55%, 0%, -120px )  scale(0.8);
+}
+
+
+
+
+
