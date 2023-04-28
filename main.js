@@ -108,24 +108,31 @@ function init() {
 class PortfolioItem extends HTMLElement{
     constructor() {
         super();
-        let header = this.getAttribute('header');
-        let img = this.getAttribute('img');
-        let details = this.getAttribute('details');
-        let githubLink = this.getAttribute('github');
+        const header = this.getAttribute('header');
+        const details = this.getAttribute('details');
+        const githubLink = this.getAttribute('github');
+        let srcAttributes = this.getAttributeNames().filter(attrName => attrName.startsWith('src'));
+        srcAttributes = srcAttributes.map(attrName => this.getAttribute(attrName));
 
-        if(!header || !img || !details) {
-            console.error("Portfolio Item must have header, img and details attributes");
+        if(!header || srcAttributes.length === 0 || !details) {
+            console.error("Portfolio Item must have header, details, and atleast one src attributes");
             return;
         }
         
-        let imgHTML = "";
-        if(img.endsWith("webm") || img.endsWith("mp4")) {
-            imgHTML = `<video src="${img}" autoplay loop muted></video>`;
-        } else {
-            imgHTML = `<img src="${img}">`;
-        }
-
         this.attachShadow({mode : "open"});
+
+        let srcHTML = "";
+
+
+        if(srcAttributes[0].endsWith("webm") || srcAttributes[0].endsWith("mp4")) {
+            srcHTML = `<video autoplay loop muted id="media">`;
+            srcAttributes.forEach(src => {
+                srcHTML += `<source src="${src}" type="video/${src.split('.').pop()}">`;
+            });
+            srcHTML += `</video>`;
+        } else {
+            srcHTML = `<img id="media" src="${srcAttributes[0]}">`;
+        }
 
         let githubHTML = "";
 
@@ -160,7 +167,7 @@ class PortfolioItem extends HTMLElement{
                     padding-top : 10px;
                     gap : 10px;
                 }
-                div img, div video {
+                #media {
                     width: 90%;
                 }
                 div h3 {
@@ -200,7 +207,7 @@ class PortfolioItem extends HTMLElement{
                     <h3 > ${header}  </h3>
                     ${githubHTML}
                 </section>
-                ${imgHTML}
+                ${srcHTML}
                 <p> ${details} </p>
         `;
         
