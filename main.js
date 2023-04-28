@@ -111,11 +111,12 @@ class PortfolioItem extends HTMLElement{
         const header = this.getAttribute('header');
         const details = this.getAttribute('details');
         const githubLink = this.getAttribute('github');
+        const img = this.getAttribute('img');
         let srcAttributes = this.getAttributeNames().filter(attrName => attrName.startsWith('src'));
         srcAttributes = srcAttributes.map(attrName => this.getAttribute(attrName));
 
-        if(!header || srcAttributes.length === 0 || !details) {
-            console.error("Portfolio Item must have header, details, and atleast one src attributes");
+        if(!header || !img || !details) {
+            console.error("Portfolio Item must have header, details, and img attributes");
             return;
         }
         
@@ -124,14 +125,15 @@ class PortfolioItem extends HTMLElement{
         let srcHTML = "";
 
 
-        if(srcAttributes[0].endsWith("webm") || srcAttributes[0].endsWith("mp4")) {
+        if(srcAttributes.length != 0) {
             srcHTML = `<video autoplay loop muted id="media">`;
             srcAttributes.forEach(src => {
                 srcHTML += `<source src="${src}" type="video/${src.split('.').pop()}">`;
             });
+            srcHTML += `<img src="${img}">`;
             srcHTML += `</video>`;
         } else {
-            srcHTML = `<img id="media" src="${srcAttributes[0]}">`;
+            srcHTML = `<img id="media" src="${img}">`;
         }
 
         let githubHTML = "";
