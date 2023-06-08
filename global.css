@@ -14,6 +14,11 @@
   padding: 0;
 }
 
+
+html {
+  font-size: calc(13px + 0.390625vw);
+}
+
 /* Set height and overflow to prevent animations extending page height */
 main {
   height: 100%;

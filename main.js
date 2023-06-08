@@ -1,6 +1,20 @@
 const HOMEPAGE_CLOSING_ANIMATION_TIME = 2200;
 const HOMEPAGE_OPENING_ANIMATION_TIME = 2400;
 
+// run init when loaded
+window.addEventListener("DOMContentLoaded", init);
+function init() {
+    initHomepage();
+    addFadeInAnimations();
+}
+
+function addFadeInAnimations() {
+    document.querySelector('#foreground h1').className = "fade-in-animate";
+    document.querySelector('#foreground p').className = "fade-in-delay1-animate";
+    document.querySelector('#foreground button').className = "fade-in-delay2-animate";
+    document.querySelector('#resume-button').className = "fade-in-delay2-animate";
+}
+
 function initHomepage() {
     let main = document.querySelector('main');
     let homePageTpl = document.getElementById('homepage-tpl');
@@ -25,8 +39,8 @@ function initPortfolio() {
     main.append(portfolioTpl.content.cloneNode(true));
 
     document.getElementById('back-home-button').addEventListener('click', backHome);
-    document.getElementById('left-button').addEventListener('click', moveSliderLeft);
-    document.getElementById('right-button').addEventListener('click', moveSliderRight);
+    document.getElementById('left-button').addEventListener('click', moveSliderRight);
+    document.getElementById('right-button').addEventListener('click', moveSliderLeft);
 
     document.body.style.backgroundColor = "var(--portfolio-background-color)";
 
@@ -97,13 +111,7 @@ function backHome(e){
     }, HOMEPAGE_OPENING_ANIMATION_TIME);
 }
 
-function init() {
-    initHomepage();
-    document.querySelector('#foreground h1').className = "fade-in-animate";
-    document.querySelector('#foreground p').className = "fade-in-delay1-animate";
-    document.querySelector('#foreground button').className = "fade-in-delay2-animate";
-    document.querySelector('#resume-button').className = "fade-in-delay2-animate";
-}
+
 
 class PortfolioItem extends HTMLElement{
     constructor() {
@@ -126,7 +134,7 @@ class PortfolioItem extends HTMLElement{
 
 
         if(srcAttributes.length != 0) {
-            srcHTML = `<video autoplay loop muted id="media">`;
+            srcHTML = `<video autoplay loop muted playsinline id="media">`;
             srcAttributes.forEach(src => {
                 srcHTML += `<source src="${src}" type="video/${src.split('.').pop()}">`;
             });
@@ -289,13 +297,13 @@ function update_slider_counter(direction) {
 
     if ( typeof update_slider_counter.counter == 'undefined' ) {
         //perform the initialization
-        update_slider_counter.counter = 0;
+        update_slider_counter.counter = 2;
     }
 
     if(direction === "left") {
-        update_slider_counter.counter = strict_modulo((update_slider_counter.counter - 1), sliderItemsLength);
-    } else if (direction === "right") {
         update_slider_counter.counter = strict_modulo((update_slider_counter.counter + 1), sliderItemsLength);
+    } else if (direction === "right") {
+        update_slider_counter.counter = strict_modulo((update_slider_counter.counter - 1), sliderItemsLength);
     }
 
     let currDot = document.getElementById("dot" + (update_slider_counter.counter+1));
@@ -326,5 +334,3 @@ function init_slider() {
     sliderCounter.innerHTML = sliderCounterInnerHTMl;
     update_slider_counter("none", sliderItemsLength);
 }
-
-init();
