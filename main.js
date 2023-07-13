@@ -132,7 +132,7 @@ class PortfolioItem extends HTMLElement{
 
         let srcHTML = "";
 
-
+        //if source attributes has more than one element, it indicates video
         if(srcAttributes.length != 0) {
             srcHTML = `<video autoplay loop muted playsinline id="media">`;
             srcAttributes.forEach(src => {
@@ -146,7 +146,7 @@ class PortfolioItem extends HTMLElement{
 
         let githubHTML = "";
 
-        if(githubLink) {
+        if(githubLink) { //long string of numbers is github svg
             githubHTML += `
                 <a id="github-link" href="${githubLink}" >
                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -155,6 +155,10 @@ class PortfolioItem extends HTMLElement{
                 </a>
             `;
         } 
+        let paragraphFontSize = "1";
+        if(details.length > 120) {
+            paragraphFontSize = "0.8";
+        }
        
         this.shadowRoot.innerHTML += `
             <style>
@@ -186,6 +190,7 @@ class PortfolioItem extends HTMLElement{
                 div p {
                     text-align : center;
                     width: 90%;
+                    font-size: ${paragraphFontSize}rem;
                 }
                 #github-link {
                     text-decoration: none;
@@ -219,11 +224,8 @@ class PortfolioItem extends HTMLElement{
                 </section>
                 ${srcHTML}
                 <p> ${details} </p>
+            </div>
         `;
-        
-        
-        
-        this.shadowRoot.innerHTML += '</div>'
     }
 }
 
