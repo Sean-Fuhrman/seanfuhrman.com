@@ -210,10 +210,11 @@ class PortfolioItem extends HTMLElement{
                 }
                 section {
                     display: flex;
-                    flex-flow: row wrap;
+                    flex-flow: row no-wrap;
                     justify-content: center;
                     column-gap: 10px;
                     align-items: center;
+                    width: 90%;
                 }
             </style>
 
