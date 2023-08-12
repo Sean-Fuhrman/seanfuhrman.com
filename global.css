@@ -16,7 +16,7 @@
 
 
 html {
-  font-size: calc(13px + 0.390625vw);
+  font-size: min(calc(13px + 0.390625vw), 1rem);
 }
 
 /* Set height and overflow to prevent animations extending page height */
@@ -232,6 +232,7 @@ i,strong{
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
 }
 
 #view-portfolio-button:hover, #resume-button:hover{
@@ -340,7 +341,7 @@ i,strong{
 
 @media screen and (max-width: 750px) {
   #portfolio {
-    grid-template-rows: 200px 50px 420px 50px;
+    grid-template-rows: 200px 50px 420px;
     grid-template-columns: 1fr 1fr;
   }
   #portfolio header {
@@ -358,13 +359,13 @@ i,strong{
   #left-button {
     justify-self: center;
     align-self: center;
-    grid-row: 4 / 5;
+    grid-row: 2 / 3;
     grid-column: 1 / 2;
   }
   #right-button {
     justify-self: center;
     align-self: center;
-    grid-row: 4 / 5;
+    grid-row: 2 / 3;
     grid-column: 2 / 3;
   }
 }
@@ -393,8 +394,8 @@ i,strong{
   color: var(--portfolio-highlight-color);
   border-radius: 50%;
   border: 4px double var(--portfolio-highlight-color);
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -403,6 +404,7 @@ i,strong{
 #left-button:hover, #right-button:hover {
   filter: brightness(0.7);
 }
+
 #slider-counter {
   width : 100%;
   height: 100%;
