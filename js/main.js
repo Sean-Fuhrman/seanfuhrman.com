@@ -1,18 +1,92 @@
 const HOMEPAGE_CLOSING_ANIMATION_TIME = 2200;
 const HOMEPAGE_OPENING_ANIMATION_TIME = 2400;
 
-// run init when loaded
-window.addEventListener("DOMContentLoaded", init);
-function init() {
-    initHomepage();
-    addFadeInAnimations();
+/** Start of code for routing with animations */
+document.addEventListener("click", (e) => {
+    const {target} = e;
+    if(!target.matches("a")) {
+        return;
+    }
+    if(target.pathname == "/Resume.pdf") {
+        window.location.pathname = "/Resume.pdf";
+        return;
+    }
+    e.preventDefault();
+    urlRoute(e);
+});
+
+const urlRoute = (event) => {
+    event = event || window.event;
+    event.preventDefault();
+    window.history.pushState({}, "", event.target.href);
+    urlLocationHandler();
 }
 
+const urlRoutes = {
+    "/" : {
+        template : "/templates/index.html",
+        title : "",
+        description : "",
+        openWithAnimations: openHomepage,
+        openWithoutAnimtions: () => {
+            initHomepage();
+            addFadeInAnimations();
+        },
+    },
+    "/projects" : {
+        template : "/templates/projects.html",
+        title : "",
+        description : "",
+        openWithAnimations: openProjects,
+        openWithoutAnimtions: initProjects,
+    },
+    "/blog" : {
+        template : "/templates/blog.html",
+        title : "",
+        description : "",
+        openWithAnimations: openBlog,
+        openWithoutAnimtions: initBlog,
+    },
+    "/contact" : {
+        template : "/templates/contact.html",
+        title : "",
+        description : "",
+        openWithAnimations: openContact,
+        openWithoutAnimtions: initContact,
+    },
+}
+
+const urlLocationHandler = async () => {
+    let location = window.location.pathname;
+    if(location.length == 0) {
+        location = "/";
+    }
+
+    const route = urlRoutes[location] || urlRoutes["/"]; //NOTE: replace this with 404 page if i want to implement that
+    const main = document.querySelector('main');
+
+    //add page with or without animations as necessary
+    if(document.querySelector("main section") == null) {
+        route.openWithoutAnimtions();
+    } else {
+        route.openWithAnimations();
+    }
+}
+
+window.onpopstate = urlLocationHandler;
+
+urlLocationHandler();
+
+/** End of code for routing with animations */
+
+
+/** Start of code for hompage */
+
 function addFadeInAnimations() {
-    document.querySelector('#foreground h1').className = "fade-in-animate";
-    document.querySelector('#foreground p').className = "fade-in-delay1-animate";
-    document.querySelector('#foreground button').className = "fade-in-delay2-animate";
-    document.querySelector('#resume-button').className = "fade-in-delay2-animate";
+    document.querySelector('#foreground h1').className += " fade-in-animate";
+    document.querySelector('#foreground p').className += " fade-in-delay1-animate";
+    document.querySelectorAll('#foreground a').forEach(button => { button.className += " fade-in-delay2-animate"; });
+    document.querySelector('#resume-button').className += " fade-in-delay2-animate";
 }
 
 function initHomepage() {
@@ -24,75 +98,20 @@ function initHomepage() {
     let foreground = document.getElementById('foreground');
     foreground.style.width = "95%";
     foreground.style.height = "95%";
-
-    document.getElementById('view-portfolio-button').addEventListener('click', openPortfiolio);
 }
 
 function removeHomepage() {
-    document.getElementById('view-portfolio-button').removeEventListener('click', openPortfiolio);
     document.getElementById('homepage').remove(); 
 }
 
-function initPortfolio() {
-    let main = document.querySelector('main');
-    let portfolioTpl = document.getElementById('portfolio-tpl');
-    main.append(portfolioTpl.content.cloneNode(true));
+function openHomepage() {
+    //get current section that needs to be closed
+    let currSection = document.querySelector("main section");
 
-    document.getElementById('back-home-button').addEventListener('click', backHome);
-    document.getElementById('left-button').addEventListener('click', moveSliderRight);
-    document.getElementById('right-button').addEventListener('click', moveSliderLeft);
-
-    document.body.style.backgroundColor = "var(--portfolio-background-color)";
-
-    init_slider();
-}
-
-function removePortfolio() {
-    document.getElementById('right-button').removeEventListener('click', moveSliderRight);
-    document.getElementById('left-button').removeEventListener('click', moveSliderLeft);
-    document.getElementById('back-home-button').removeEventListener('click', backHome);
-    document.getElementById('portfolio').remove(); 
-}
-
-//triggered when view portfolio button is pressed
-function openPortfiolio(e) {
-    //remove event listener to prevent multiple clicks
-    document.getElementById('view-portfolio-button').removeEventListener('click', openPortfiolio);
-    //add portfolio, without animations
-    initPortfolio();
-    //remove event listener to prevent click during animation
-    document.getElementById('back-home-button').removeEventListener('click', backHome);
-
-
-    //add animations
-    document.getElementById('top-line').className = "top-close-animate";
-    document.getElementById('bottom-line').className = "bottom-close-animate";
-    document.getElementById('foreground').className = "foreground-close-animate";
-    document.getElementById('homepage').className = "homepage-close-animate";
-    document.getElementById('portfolio').className = "portfolio-open-animate";
-   
-    //remove homepage after animations
-    window.setTimeout(() => { 
-        removeHomepage(); 
-        //reset portfolio to reset animation time
-        removePortfolio();
-        initPortfolio();
-        // init_slider();
-    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
-}
-
-//triggered when back home button is pressed
-function backHome(e){
-    //remove event listener to prevent multiple clicks
-    document.getElementById('back-home-button').removeEventListener('click', backHome);
-    
-    //add homepage to main
+    //add homepage
     initHomepage();
-    //remove event listener to prevent click during animation
-    document.getElementById('view-portfolio-button').removeEventListener('click', openPortfiolio);
 
-    //add animations
-    document.getElementById('portfolio').className = "portfolio-close-animate";
+    currSection.className = "close-animate";
     document.getElementById('homepage').className = "homepage-open-animate";
     document.getElementById('foreground').className = "foreground-open-animate";
     document.getElementById('bottom-line').className = "bottom-open-animate";
@@ -102,18 +121,73 @@ function backHome(e){
     foreground.style.width = "100%";
     foreground.style.height = "100%";
 
-    //remove homepage after animations
     window.setTimeout(() => { 
-        removePortfolio(); 
-        //reset portfolio to reset animations
+        currSection.remove();
+        //reset projects to reset animations
         removeHomepage();
         initHomepage();
     }, HOMEPAGE_OPENING_ANIMATION_TIME);
 }
 
 
+/** End of code for homepage */
 
-class PortfolioItem extends HTMLElement{
+/** Start of code for projects page */
+
+
+function openProjects(e) {
+    //add projects, without animations
+    initProjects();
+
+    //add animations
+    document.getElementById('top-line').className = "top-close-animate";
+    document.getElementById('bottom-line').className = "bottom-close-animate";
+    document.getElementById('foreground').className = "foreground-close-animate";
+    document.getElementById('homepage').className = "homepage-close-animate";
+    document.getElementById('projects').className = "open-animate";
+   
+    //remove homepage after animations
+    window.setTimeout(() => { 
+        removeHomepage(); 
+        //reset projects to reset animation time
+        removeProjects();
+        initProjects();
+    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+}
+
+function closeProjects(e){
+    //remove event listener to prevent multiple clicks
+    document.getElementById('back-home-button').removeEventListener('click', closeProjects);
+    
+    //add homepage to main
+    initHomepage();
+    //remove event listener to prevent click during animation
+    removeHomepageEventListeners();
+
+
+    //add animations
+    document.getElementById('projects').className = "close-animate";
+    document.getElementById('homepage').className = "homepage-open-animate";
+    document.getElementById('foreground').className = "foreground-open-animate";
+    document.getElementById('bottom-line').className = "bottom-open-animate";
+    document.getElementById('top-line').className = "top-open-animate";
+
+    pushPageState("");
+
+    let foreground = document.getElementById('foreground');
+    foreground.style.width = "100%";
+    foreground.style.height = "100%";
+
+    //remove homepage after animations
+    window.setTimeout(() => { 
+        removeprojects(); 
+        //reset projects to reset animations
+        removeHomepage();
+        initHomepage();
+    }, HOMEPAGE_OPENING_ANIMATION_TIME);
+}
+
+class projectsItem extends HTMLElement{
     constructor() {
         super();
         const header = this.getAttribute('header');
@@ -124,7 +198,7 @@ class PortfolioItem extends HTMLElement{
         srcAttributes = srcAttributes.map(attrName => this.getAttribute(attrName));
 
         if(!header || !img || !details) {
-            console.error("Portfolio Item must have header, details, and img attributes");
+            console.error("projects Item must have header, details, and img attributes");
             return;
         }
         
@@ -173,10 +247,10 @@ class PortfolioItem extends HTMLElement{
                     flex-direction: column;
                     align-items: center;
                     justify-content: space-around;
-                    border: 3px solid var(--portfolio-highlight-color);
+                    border: 3px solid var(--projects-highlight-color);
                     border-radius: 10px;
-                    background: var(--portfolio-item-background-color);
-                    color: var(--portfolio-item-text-color);
+                    background: var(--projects-item-background-color);
+                    color: var(--projects-item-text-color);
                     padding-bottom: 10px;
                     padding-top : 10px;
                     gap : 10px;
@@ -194,7 +268,7 @@ class PortfolioItem extends HTMLElement{
                 }
                 #github-link {
                     text-decoration: none;
-                    color: var(--portfolio-item-text-color);
+                    color: var(--projects-item-text-color);
                     height : 2rem;
                     width : 2rem;
                 }
@@ -218,7 +292,7 @@ class PortfolioItem extends HTMLElement{
                 }
             </style>
 
-            <div class="portfolio-item-container">
+            <div class="projects-item-container">
                 <section>
                     <h3 > ${header}  </h3>
                     ${githubHTML}
@@ -230,7 +304,26 @@ class PortfolioItem extends HTMLElement{
     }
 }
 
-customElements.define('portfolio-item', PortfolioItem);
+customElements.define('projects-item', projectsItem);
+
+function initProjects() {
+    let main = document.querySelector('main');
+    let projectsTpl = document.getElementById('projects-tpl');
+    main.append(projectsTpl.content.cloneNode(true));
+
+    document.getElementById('left-button').addEventListener('click', moveSliderRight);
+    document.getElementById('right-button').addEventListener('click', moveSliderLeft);
+
+    document.body.style.backgroundColor = "var(--projects-background-color)";
+
+    init_slider();
+}
+
+function removeProjects() {
+    document.getElementById('right-button').removeEventListener('click', moveSliderRight);
+    document.getElementById('left-button').removeEventListener('click', moveSliderLeft);
+    document.getElementById('projects').remove(); 
+}
 
 function moveSliderRight () {
     //move slider right
@@ -269,7 +362,6 @@ function moveSliderLeft () {
     let newPosition5 = position5.nextElementSibling;
     if(newPosition5 == null) {
         newPosition5 = document.getElementById('slider').firstElementChild;
-        console.log(newPosition5)
     }
     newPosition5.className = "position5";
     position5.className = "position4";
@@ -286,7 +378,6 @@ function moveSliderLeft () {
 function strict_modulo (n, m) {
     return ((n % m) + m) % m;
 }
-
 
 function update_slider_counter(direction) {
     let slider = document.getElementById('slider');
@@ -337,3 +428,78 @@ function init_slider() {
     sliderCounter.innerHTML = sliderCounterInnerHTMl;
     update_slider_counter("none", sliderItemsLength);
 }
+
+/** End of code for projects page */
+
+/** Start of code for blog page */
+
+function openBlog(e, pushState = true) {
+    //add blog page, without animations
+    initBlog();
+
+    //add animations
+    document.getElementById('top-line').className = "top-close-animate";
+    document.getElementById('bottom-line').className = "bottom-close-animate";
+    document.getElementById('foreground').className = "foreground-close-animate";
+    document.getElementById('homepage').className = "homepage-close-animate";
+    document.getElementById('blog').className = "open-animate";
+
+    //remove homepage after animations
+    window.setTimeout(() => { 
+        removeHomepage(); 
+        //reset contact page to reset animation time
+        removeBlog();
+        initBlog();
+    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+}
+
+function initBlog() {
+    let main = document.querySelector('main');
+    let contactTpl = document.getElementById('blog-tpl');
+    main.append(contactTpl.content.cloneNode(true));
+
+    document.body.style.backgroundColor = "var(--blog-background-color)";
+}
+
+function removeBlog(){
+    document.getElementById('blog').remove(); 
+}
+
+/** End of code for blog page */
+
+/** Start of code for contact page */
+
+function openContact(e){
+    //add contact page, without animations
+    initContact();
+
+    //add animations
+    document.getElementById('top-line').className = "top-close-animate";
+    document.getElementById('bottom-line').className = "bottom-close-animate";
+    document.getElementById('foreground').className = "foreground-close-animate";
+    document.getElementById('homepage').className = "homepage-close-animate";
+    document.getElementById('contact').className = "open-animate";
+
+    //remove homepage after animations
+    window.setTimeout(() => { 
+        removeHomepage(); 
+        //reset contact page to reset animation time
+        removeContact();
+        initContact();
+
+    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+
+}
+
+function initContact() {
+    let main = document.querySelector('main');
+    let contactTpl = document.getElementById('contact-tpl');
+    main.append(contactTpl.content.cloneNode(true));
+
+    document.body.style.backgroundColor = "var(--contact-background-color)";
+}
+
+function removeContact() {
+    document.getElementById('contact').remove(); 
+}
+/** End of code for contact page */
