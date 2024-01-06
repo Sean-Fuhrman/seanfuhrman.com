@@ -1,6 +1,8 @@
 const HOMEPAGE_CLOSING_ANIMATION_TIME = 2200;
 const HOMEPAGE_OPENING_ANIMATION_TIME = 2400;
 
+let timeoutID;
+
 /** Start of code for routing with animations */
 document.addEventListener("click", (e) => {
     const {target} = e;
@@ -66,6 +68,14 @@ const urlLocationHandler = async () => {
     const main = document.querySelector('main');
 
     //add page with or without animations as necessary
+
+    if(document.querySelectorAll("main section").length > 1) { //indicates multiple quick clicks
+        document.querySelectorAll("main section").forEach((e) => e.remove());
+        window.clearTimeout(timeoutID);
+        route.openWithoutAnimtions();
+        return;
+    }
+
     if(document.querySelector("main section") == null) {
         route.openWithoutAnimtions();
     } else {
@@ -121,7 +131,7 @@ function openHomepage() {
     foreground.style.width = "100%";
     foreground.style.height = "100%";
 
-    window.setTimeout(() => { 
+    timeoutID = window.setTimeout(() => { 
         currSection.remove();
         //reset projects to reset animations
         removeHomepage();
@@ -147,7 +157,7 @@ function openProjects(e) {
     document.getElementById('projects').className = "open-animate";
    
     //remove homepage after animations
-    window.setTimeout(() => { 
+    timeoutID = window.setTimeout(() => { 
         removeHomepage(); 
         //reset projects to reset animation time
         removeProjects();
@@ -179,7 +189,7 @@ function closeProjects(e){
     foreground.style.height = "100%";
 
     //remove homepage after animations
-    window.setTimeout(() => { 
+    timeoutID = window.setTimeout(() => { 
         removeprojects(); 
         //reset projects to reset animations
         removeHomepage();
@@ -445,7 +455,7 @@ function openBlog(e, pushState = true) {
     document.getElementById('blog').className = "open-animate";
 
     //remove homepage after animations
-    window.setTimeout(() => { 
+    timeoutID = window.setTimeout(() => { 
         removeHomepage(); 
         //reset contact page to reset animation time
         removeBlog();
@@ -481,7 +491,7 @@ function openContact(e){
     document.getElementById('contact').className = "open-animate";
 
     //remove homepage after animations
-    window.setTimeout(() => { 
+    timeoutID = window.setTimeout(() => { 
         removeHomepage(); 
         //reset contact page to reset animation time
         removeContact();
