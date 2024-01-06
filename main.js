@@ -27,8 +27,8 @@ const urlRoute = (event) => {
 const urlRoutes = {
     "/" : {
         template : "/templates/index.html",
-        title : "",
-        description : "",
+        title : "Home | Sean Fuhrman",
+        description : "I'm a Computer Engineering major studying at University of California San Diego. I'm passionate about computert science, artificial intelligence, building fun projects, and learning new things",
         openWithAnimations: openHomepage,
         openWithoutAnimtions: () => {
             initHomepage();
@@ -37,22 +37,22 @@ const urlRoutes = {
     },
     "/projects" : {
         template : "/templates/projects.html",
-        title : "",
-        description : "",
+        title : "Projects | Sean Fuhrman",
+        description : "Welcome to my projects page! Showcasing a music genre clasifer, this website, and more",
         openWithAnimations: openProjects,
         openWithoutAnimtions: initProjects,
     },
     "/blog" : {
         template : "/templates/blog.html",
-        title : "",
-        description : "",
+        title : "Blog | Sean Fuhrman",
+        description : "Notes and general writings",
         openWithAnimations: openBlog,
         openWithoutAnimtions: initBlog,
     },
     "/contact" : {
         template : "/templates/contact.html",
-        title : "",
-        description : "",
+        title : "Contact | Sean Fuhrman",
+        description : "Come leave me a comment",
         openWithAnimations: openContact,
         openWithoutAnimtions: initContact,
     },
@@ -66,6 +66,9 @@ const urlLocationHandler = async () => {
 
     const route = urlRoutes[location] || urlRoutes["/"]; //NOTE: replace this with 404 page if i want to implement that
     const main = document.querySelector('main');
+
+    document.querySelector('meta[name="description"]').setAttribute("content", route.description);
+    document.title = route.title;
 
     //add page with or without animations as necessary
 
