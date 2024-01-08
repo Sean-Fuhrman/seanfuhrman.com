@@ -14,8 +14,7 @@
   --blog-text-color : white;
   --blog-background-color: #001220;
   --blog-highlight-color: #39b7f2;
-
-  font-family: 'Playfair Display', 'serif';
+  font-family: sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -565,7 +564,7 @@ projects-item {
 }
 
 /* Blog page css */
-#blog {
+#blog, #blog-post {
   position: absolute;
   height : 100%;
   width: 100%;
@@ -576,18 +575,20 @@ projects-item {
   display: grid;
 }
 
-#blog-content{
+
+#blog-posts {
+  width: 100%;
+}
+
+#blog-container {
   display: flex;
-  justify-content: space-evenly;
   align-items: flex-start;
   align-content: flex-start;
   flex-flow: row wrap;
   margin-top: 200px;
-  margin-left: 70px;
-}
-
-#blog-container {
   width: min(65vw, 600px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #blog-container h3 {
@@ -608,6 +609,8 @@ projects-item {
   margin-bottom: 10px;
   border-radius: 10px;
   cursor: pointer;
+  color: var(--blog-text-color);
+  text-decoration: none;
 }
 
 @keyframes underline-animate {
@@ -616,14 +619,14 @@ projects-item {
   }
 }
 #blog-posts a:hover{
-  text-decoration: solid underline var(--blog-highlight-color) 1px;
-  text-underline-offset: 3px;
+  /* text-decoration: solid underline var(--blog-highlight-color) 1px;
+  text-underline-offset: 3px; */
   /* color: var(--blog-highlight-color); */
   background-color: #323a40;
 }
 
-#reading-list-container{
-  padding-left: 2rem;
+/* #reading-list-container{ */
+  /* padding-left: 2rem;
   padding-top: 5px;
   padding-bottom: 10px;
   padding-right: 5px;
@@ -648,4 +651,4 @@ projects-item {
 
 #reading-list-container li {
   margin-bottom: 8px;
-}
+} */

@@ -64,8 +64,12 @@ const urlLocationHandler = async () => {
         location = "/";
     }
 
+    if(/^\/blog\/.*/.test(location)) { //some blog post is being loaded
+        openBlogPost(location);
+        return;
+    }
+
     const route = urlRoutes[location] || urlRoutes["/"]; //NOTE: replace this with 404 page if i want to implement that
-    const main = document.querySelector('main');
 
     document.querySelector('meta[name="description"]').setAttribute("content", route.description);
     document.title = route.title;
@@ -468,14 +472,30 @@ function openBlog(e, pushState = true) {
 
 function initBlog() {
     let main = document.querySelector('main');
-    let contactTpl = document.getElementById('blog-tpl');
-    main.append(contactTpl.content.cloneNode(true));
+    let blogTpl = document.getElementById('blog-tpl');
+    main.append(blogTpl.content.cloneNode(true));
 
     document.body.style.backgroundColor = "var(--blog-background-color)";
 }
 
 function removeBlog(){
     document.getElementById('blog').remove(); 
+}
+
+function openBlogPost() {
+    let main = document.querySelector('main');
+    let blogPostTpl = document.getElementById('blog-post-tpl');
+
+    // to ensure no glitching get rid of other content, this is OK because blog 
+    // post never opens with animations
+    document.querySelectorAll("main section").forEach((e) => e.remove());
+    window.clearTimeout(timeoutID);
+    main.append(blogPostTpl.content.cloneNode(true));
+
+    //set zero-md src attribute based on URL (href of link must match file name)
+    let filename = window.location.pathname.split("/")[2];
+    document.querySelector('zero-md').src = "/blog-posts/" + filename + ".md";
+    
 }
 
 /** End of code for blog page */
