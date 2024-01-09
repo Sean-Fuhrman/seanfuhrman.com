@@ -495,7 +495,6 @@ function openBlogPost() {
     //set zero-md src attribute based on URL (href of link must match file name)
     let filename = window.location.pathname.split("/")[2];
     document.querySelector('zero-md').src = "/blog-posts/" + filename + ".md";
-    
 }
 
 /** End of code for blog page */
