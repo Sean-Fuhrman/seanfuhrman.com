@@ -253,18 +253,17 @@ class projectsItem extends HTMLElement{
                 }
                 div {
                     width: 100%;
-                    height : 100%;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    justify-content: space-around;
+                    justify-content: flex-start;
                     border: 3px solid var(--projects-highlight-color);
                     border-radius: 10px;
                     background: var(--projects-item-background-color);
                     color: var(--projects-item-text-color);
                     padding-bottom: 10px;
-                    padding-top : 0px;
-                    gap : 10px;
+                    padding-top : 10px;
+                    gap : 20px;
                 }
                 #media {
                     width: 80%;
