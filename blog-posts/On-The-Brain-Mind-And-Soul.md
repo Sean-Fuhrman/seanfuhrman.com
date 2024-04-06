@@ -8,7 +8,7 @@ we are conscious beings, but why? I know I am here. I know I am breathing, I kno
 
 I think a good way to start thinking about this subject, is to attempt to categorize the world into conscious and not conscious beings; and hopefully reason what brings about consciousness. 
 
-There is one axiom on this subject, human beings are conscious. The complicated, organic, intelligent, clump of matter that is humans is the **only** thing in this word that we know is conscious.
+There is only one axiom on this subject, human beings are conscious. The complicated, organic, intelligent, clump of matter that is humans is the **only** thing in this word that we know is conscious.
 
 It's reasonable to assume that similar animals to humans are conscious and aware, probably because we can imagine a similar consciousness inside these animals as ourselves. But where is the line?
 

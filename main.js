@@ -1,5 +1,5 @@
-const HOMEPAGE_CLOSING_ANIMATION_TIME = 2200;
-const HOMEPAGE_OPENING_ANIMATION_TIME = 2400;
+const HOMEPAGE_CLOSING_ANIMATION_TIME = 1000;
+const HOMEPAGE_OPENING_ANIMATION_TIME = 1000;
 
 let timeoutID;
 
@@ -101,6 +101,7 @@ urlLocationHandler();
 
 function addFadeInAnimations() {
     document.querySelector('#foreground h1').className += " fade-in-animate";
+    document.querySelector('#profile-pic').className += " fade-in-delay1-animate";
     document.querySelector('#foreground p').className += " fade-in-delay1-animate";
     document.querySelectorAll('#foreground a').forEach(button => { button.className += " fade-in-delay2-animate"; });
     document.querySelector('#resume-button').className += " fade-in-delay2-animate";
@@ -131,8 +132,6 @@ function openHomepage() {
     currSection.className = "close-animate";
     document.getElementById('homepage').className = "homepage-open-animate";
     document.getElementById('foreground').className = "foreground-open-animate";
-    document.getElementById('bottom-line').className = "bottom-open-animate";
-    document.getElementById('top-line').className = "top-open-animate";
 
     let foreground = document.getElementById('foreground');
     foreground.style.width = "100%";
@@ -146,7 +145,6 @@ function openHomepage() {
     }, HOMEPAGE_OPENING_ANIMATION_TIME);
 }
 
-
 /** End of code for homepage */
 
 /** Start of code for projects page */
@@ -157,8 +155,6 @@ function openProjects(e) {
     initProjects();
 
     //add animations
-    document.getElementById('top-line').className = "top-close-animate";
-    document.getElementById('bottom-line').className = "bottom-close-animate";
     document.getElementById('foreground').className = "foreground-close-animate";
     document.getElementById('homepage').className = "homepage-close-animate";
     document.getElementById('projects').className = "open-animate";
@@ -186,8 +182,6 @@ function closeProjects(e){
     document.getElementById('projects').className = "close-animate";
     document.getElementById('homepage').className = "homepage-open-animate";
     document.getElementById('foreground').className = "foreground-open-animate";
-    document.getElementById('bottom-line').className = "bottom-open-animate";
-    document.getElementById('top-line').className = "top-open-animate";
 
     pushPageState("");
 
@@ -247,8 +241,8 @@ class projectsItem extends HTMLElement{
             `;
         } 
         let paragraphFontSize = "1";
-        if(details.length > 120) {
-            paragraphFontSize = "0.8";
+        if(details.length > 250) {
+            paragraphFontSize = "0.9";
         }
        
         this.shadowRoot.innerHTML += `
@@ -269,11 +263,11 @@ class projectsItem extends HTMLElement{
                     background: var(--projects-item-background-color);
                     color: var(--projects-item-text-color);
                     padding-bottom: 10px;
-                    padding-top : 10px;
+                    padding-top : 0px;
                     gap : 10px;
                 }
                 #media {
-                    width: 90%;
+                    width: 80%;
                 }
                 div h3 {
                     text-align : center;
@@ -455,8 +449,6 @@ function openBlog(e, pushState = true) {
     initBlog();
 
     //add animations
-    document.getElementById('top-line').className = "top-close-animate";
-    document.getElementById('bottom-line').className = "bottom-close-animate";
     document.getElementById('foreground').className = "foreground-close-animate";
     document.getElementById('homepage').className = "homepage-close-animate";
     document.getElementById('blog').className = "open-animate";
@@ -506,8 +498,6 @@ function openContact(e){
     initContact();
 
     //add animations
-    document.getElementById('top-line').className = "top-close-animate";
-    document.getElementById('bottom-line').className = "bottom-close-animate";
     document.getElementById('foreground').className = "foreground-close-animate";
     document.getElementById('homepage').className = "homepage-close-animate";
     document.getElementById('contact').className = "open-animate";
