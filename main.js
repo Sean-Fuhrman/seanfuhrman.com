@@ -241,9 +241,6 @@ class projectsItem extends HTMLElement{
             `;
         } 
         let paragraphFontSize = "1";
-        if(details.length > 250) {
-            paragraphFontSize = "0.9";
-        }
        
         this.shadowRoot.innerHTML += `
             <style>
@@ -260,10 +257,11 @@ class projectsItem extends HTMLElement{
                     border: 3px solid var(--projects-highlight-color);
                     border-radius: 10px;
                     background: var(--projects-item-background-color);
-                    color: var(--projects-item-text-color);
                     padding-bottom: 10px;
                     padding-top : 10px;
-                    gap : 20px;
+                    padding-left : 5px;
+                    padding-right : 5px;
+                    gap : 10px;
                 }
                 #media {
                     width: 80%;

@@ -442,13 +442,15 @@ projects-item {
   box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(-55%, 0%, -120px) scale(0.8);
- 
+  color: lightgrey;
 }
 
 .position2 {
   box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(-25%, 0%, -60px) scale(0.9);
+  color: lightgrey;
+
 
 }
 
@@ -462,12 +464,16 @@ projects-item {
   box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(25%, 0%, -60px) scale(0.9);
+  color: lightgrey;
+
 }
 
 .position5 {
   box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(55%, 0%, -120px )  scale(0.8);
+  color: lightgrey;
+
 }
 
 /** contact page css **/
