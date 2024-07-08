@@ -26,7 +26,6 @@ const urlRoute = (event) => {
 
 const urlRoutes = {
     "/" : {
-        template : "/templates/index.html",
         title : "Home | Sean Fuhrman",
         description : "I'm a Computer Engineering major studying at University of California San Diego. I'm passionate about computert science, artificial intelligence, building fun projects, and learning new things",
         openWithAnimations: openHomepage,
@@ -36,25 +35,28 @@ const urlRoutes = {
         },
     },
     "/projects" : {
-        template : "/templates/projects.html",
         title : "Projects | Sean Fuhrman",
         description : "Welcome to my projects page! Showcasing a music genre clasifer, this website, and more",
         openWithAnimations: openProjects,
         openWithoutAnimtions: initProjects,
     },
     "/blog" : {
-        template : "/templates/blog.html",
         title : "Blog | Sean Fuhrman",
         description : "Notes and general writings",
         openWithAnimations: openBlog,
         openWithoutAnimtions: initBlog,
     },
     "/contact" : {
-        template : "/templates/contact.html",
         title : "Contact | Sean Fuhrman",
         description : "Come leave me a comment",
         openWithAnimations: openContact,
         openWithoutAnimtions: initContact,
+    },
+    "/publications" : {
+        title : "Publications | Sean Fuhrman",
+        description : "My publications",
+        openWithAnimations: openPublications,
+        openWithoutAnimtions: initPublications,
     },
 }
 
@@ -522,3 +524,37 @@ function removeContact() {
     document.getElementById('contact').remove(); 
 }
 /** End of code for contact page */
+
+/** Start of code for publications page */
+
+function openPublications(e){
+    //add publications page, without animations
+    initPublications();
+
+    //add animations
+    document.getElementById('foreground').className = "foreground-close-animate";
+    document.getElementById('homepage').className = "homepage-close-animate";
+    document.getElementById('publications').className = "open-animate";
+
+    //remove homepage after animations
+    timeoutID = window.setTimeout(() => { 
+        removeHomepage(); 
+        //reset contact page to reset animation time
+        removePublications();
+        initPublications();
+
+    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+}
+
+function initPublications() {
+    let main = document.querySelector('main');
+    let publicationsTpl = document.getElementById('publications-tpl');
+    main.append(publicationsTpl.content.cloneNode(true));
+
+    document.body.style.backgroundColor = "var(--publications-background-color)";
+}
+
+function removePublications() {
+    document.getElementById('publications').remove(); 
+}
+/** End of code for publications page */

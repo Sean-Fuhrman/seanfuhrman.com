@@ -13,7 +13,8 @@
   --contact-highlight-color: #c403bf;
   --blog-text-color : white;
   --blog-background-color: #001220;
-  --blog-highlight-color: #39b7f2;
+  --blog-highlight-color: #ffb800;
+  --publications-background-color: #001220;
   font-family: sans-serif;
   box-sizing: border-box;
   margin: 0;
@@ -214,8 +215,8 @@ i,strong{
 
 #profile-pic {
   border-radius: 50%;
-  height: 250px;
-  width: 250px;
+  height: min(30vw, 250px);
+  width: min(30vw, 250px);
   border: 3px solid var(--text-highlight-color);
 }
 
@@ -279,10 +280,11 @@ i,strong{
 #foreground nav {
   display: flex;
   justify-content: center;
-  gap : 2rem;
+  gap: 2rem;
   align-items: center;
-  flex-flow: row;
-  justify-content: space-evenly;
+  flex-flow: row wrap;
+  /* justify-content: space-evenly; */
+  width: 90%;
   padding-top: 20px;
 }
 
@@ -573,7 +575,7 @@ projects-item {
   width: 100%;
   color: var(--projects-text-color);
   z-index: 0;
-  background: url(/assets/blue-waves.svg) repeat-x top center;
+  background: url(/assets/yellow-waves.svg) repeat-x top center;
   background-size: 800px auto;
   display: grid;
 }
@@ -654,4 +656,47 @@ projects-item {
 
 #reading-list-container li {
   margin-bottom: 8px;
+} */
+
+/* publications page css */
+#publications {
+  position: absolute;
+  height : 100%;
+  width: 100%;
+  color: var(--projects-text-color);
+  z-index: 0;
+  background: url(/assets/blue-waves.svg) repeat-x top center;
+  background-size: 800px auto;
+  display: grid;
+}
+
+#publications-container {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-flow: row wrap;
+  margin-top: 200px;
+  width: min(65vw, 600px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#publications-list {
+  width: 100%;
+  font-size: 1rem;
+}
+/* 
+#publications-list li {
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  gap:10px;
+} */
+
+#publications-list b {
+  color : var(--text-highlight-color);
+}
+/*
+#publications-list i {
+  color: lightpink;
 } */
