@@ -103,9 +103,10 @@ urlLocationHandler();
 
 function addFadeInAnimations() {
     document.querySelector('#foreground h1').className += " fade-in-animate";
+    document.querySelector('#foreground h2').className += " fade-in-animate";
     document.querySelector('#profile-pic').className += " fade-in-delay1-animate";
     document.querySelector('#foreground p').className += " fade-in-delay1-animate";
-    document.querySelectorAll('#foreground a').forEach(button => { button.className += " fade-in-delay2-animate"; });
+    document.querySelectorAll('#foreground nav a').forEach(button => { button.className += " fade-in-delay2-animate"; });
     document.querySelector('#resume-button').className += " fade-in-delay2-animate";
 }
 

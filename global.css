@@ -246,7 +246,7 @@ i,strong{
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem; 
+  /* gap: 1rem;  */
 } 
 
 #stars {
@@ -277,13 +277,45 @@ i,strong{
   font-size: clamp(1.25rem, 6vw, 1.75rem);
 }
 
+#foreground h2{
+  text-align: center;
+  color: var(--text-color);
+  font-size: clamp(1rem, 6vw, 1.25rem);
+  max-width: 40ch;         /* ≈40 characters per line */
+  margin: 0.5em auto;   
+}
+
+#foreground h1 a{
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: clamp(1.25rem, 6vw, 1.75rem);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+#foreground h1 svg {
+  color : var(--text-color);
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 0.5rem;
+}
+.linkedin {
+  font-size: 1.75rem;
+}
+.github{
+  font-size: 2rem;
+}
+#foreground h1 svg:hover {
+  color: var(--text-highlight-color);
+}
+
 #foreground p {
   text-align: center;
   color: var(--text-color);
   font-size: clamp(0.875rem, 3vw, 1.1rem);
-  line-height: 1.6; /* keep good readability */
-  max-width: 80vw;  /* prevent lines from stretching too wide */
-  margin: 0 auto; 
+  max-width: 40ch;         /* ≈40 characters per line */
+  margin: 0.75em auto;     /* center it with some breathing room */
+  line-height: 1.5;        /* improve readability */
 }
 
 .homepage-button {
