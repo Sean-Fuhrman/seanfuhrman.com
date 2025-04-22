@@ -23,13 +23,17 @@
 
 
 html {
-  font-size: min( 2.3vw, 1rem);
-}
+/* Font will never go below 16px, scale with viewport up to 18px */
+  font-size: clamp(16px, 2.3vw, 18px); 
+} 
+
 
 /* Set height and overflow to prevent animations extending page height */
 main {
-  height: 100%;
-  overflow-y: hidden;
+  /* Let it grow with its content, but at least fill the screen */
+  min-height: 100vh;
+  /* Enable vertical scrolling when needed */
+  overflow-y: auto;
 }
 
 body{
@@ -89,8 +93,8 @@ header {
 
 @keyframes expand {
   from{
-    height: 95%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
   }
   to {
     height: 100%;
@@ -160,17 +164,17 @@ header {
 /* Animations triggered by View projects Button, in order of delay*/
 
 .foreground-close-animate {
-  animation: 0.4s ease-in 0s 1 forwards expand, 0.6s ease-in 0.4s 1 forwards scale-page-down;
+  animation: 0.6s ease-in 0s 1 forwards scale-page-down;
   transform-origin: top center;
 }
 
 .homepage-close-animate{
-  animation:  0.6s ease-in 0.4s 1 forwards scale-page-down; 
+  animation:  0.6s ease-in 0s 1 forwards scale-page-down; 
   transform-origin: top center;
 }
 
 .open-animate{
-  animation:  0.6s ease-in 0.4s 1 move-page-up;
+  animation:  0.6s ease-in 0s 1 move-page-up;
 }
 /* end of View projects animations */
 
@@ -182,13 +186,6 @@ header {
 
 .homepage-open-animate{
   animation:  0.6s ease-in 0s 1 forwards reverse scale-page-down; 
-  transform-origin: top center;
-}
-
-.foreground-open-animate {
-  width: 100%;
-  height: 100%;
-  animation: 0.4s ease-in 0.8s 1 forwards reverse expand, 0.8s ease-in 0s 1 forwards reverse  scale-page-down;
   transform-origin: top center;
 }
 
@@ -205,35 +202,57 @@ i,strong{
   from {background-position: 0px 0px;}
   to {background-position: 0px -4000px;}
 }
+
+/* Desktop first: picture left, text right */
 #introduction-container {
   display: flex;
-  flex-flow: row wrap-reverse;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  /* gap: 20px; */
+  gap: 2rem;
+  width: min(80vw, 800px);
+}
+
+#profile-pic {
+  order: 1;
+  margin-right: 1.5rem;
+}
+
+#text-section {
+  order: 2;
+  text-align: left;
+}
+
+/* Mobile fallback */
+@media screen and (max-width: 600px) {
+  #introduction-container {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 #profile-pic {
   border-radius: 50%;
   height: min(30vw, 250px);
-  width: min(30vw, 250px);
+  /* width: min(30vw, 250px); */
   border: 3px solid var(--text-highlight-color);
 }
 
-/* #text-section {
-   display: flex;
+#text-section {
+  display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px; 
-} */
+  gap: 1rem; 
+} 
 
 #stars {
   background: var(--foreground-color) url('/assets/stars.png') repeat top center;
   background-size: auto 1000px;
   animation: 200s linear 0s infinite background-slide;
-  height: 100%;
-  width: 100%;
   display: flex;
   position: relative;
   justify-content: center;
@@ -241,23 +260,30 @@ i,strong{
   flex-direction: column;
 }
 
+#homepage,
+#foreground,
+#stars {
+  min-height: 100vh;
+  width: 100%;
+}
 #foreground {
   background: var(--foreground-color);
+  box-sizing: border-box;
 }
 
 #foreground h1{
   text-align: center;
   color: var(--text-color);
-  font-size: 2.4rem;
+  font-size: clamp(1.25rem, 6vw, 1.75rem);
 }
 
 #foreground p {
   text-align: center;
   color: var(--text-color);
-  font-size: 1.3rem;
-  line-height: 2rem;
-  max-width: min(80vw, 500px);
-  padding: 10px;
+  font-size: clamp(0.875rem, 3vw, 1.1rem);
+  line-height: 1.6; /* keep good readability */
+  max-width: 80vw;  /* prevent lines from stretching too wide */
+  margin: 0 auto; 
 }
 
 .homepage-button {
@@ -289,8 +315,6 @@ i,strong{
 }
 
 #homepage{
-  height: 100vh;
-  width: 100vw;
   background-color: var(--background-color);
   display: flex;
   justify-content: center;

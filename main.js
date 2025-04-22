@@ -1,5 +1,5 @@
-const HOMEPAGE_CLOSING_ANIMATION_TIME = 1000;
-const HOMEPAGE_OPENING_ANIMATION_TIME = 1000;
+const HOMEPAGE_CLOSING_ANIMATION_TIME = 600;
+const HOMEPAGE_OPENING_ANIMATION_TIME = 600;
 
 let timeoutID;
 
@@ -113,11 +113,6 @@ function initHomepage() {
     let main = document.querySelector('main');
     let homePageTpl = document.getElementById('homepage-tpl');
     main.append(homePageTpl.content.cloneNode(true));
-
-
-    let foreground = document.getElementById('foreground');
-    foreground.style.width = "95%";
-    foreground.style.height = "95%";
 }
 
 function removeHomepage() {
@@ -133,7 +128,6 @@ function openHomepage() {
 
     currSection.className = "close-animate";
     document.getElementById('homepage').className = "homepage-open-animate";
-    document.getElementById('foreground').className = "foreground-open-animate";
 
     let foreground = document.getElementById('foreground');
     foreground.style.width = "100%";
