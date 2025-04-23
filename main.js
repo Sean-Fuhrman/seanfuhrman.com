@@ -102,18 +102,45 @@ urlLocationHandler();
 /** Start of code for hompage */
 
 function addFadeInAnimations() {
-    document.querySelector('#foreground h1').className += " fade-in-animate";
-    document.querySelector('#foreground h2').className += " fade-in-animate";
-    document.querySelector('#profile-pic').className += " fade-in-delay1-animate";
-    document.querySelector('#foreground p').className += " fade-in-delay1-animate";
-    document.querySelectorAll('#foreground nav a').forEach(button => { button.className += " fade-in-delay2-animate"; });
-    document.querySelector('#resume-button').className += " fade-in-delay2-animate";
+    document.querySelector('#foreground h1').className += " fade-in-delay1-animate";
+    document.querySelector('#foreground h2').className += " fade-in-delay1-animate";
+    document.querySelector('#profile-pic').className += "  fade-in-animate";
+    document.querySelector('#foreground p').className += " fade-in-delay2-animate";
+    document.querySelector('.icon-container').className += " fade-in-delay2-animate";
+
+    // only add this if screen is large enough
+    if(window.innerWidth >= 600) {
+        document.querySelectorAll('#foreground nav a').forEach(button => { button.className += " fade-in-delay2-animate"; });
+        document.querySelector('#resume-button').className += " fade-in-delay2-animate";
+    }
+   
+    // add timeout to remove animation class
+    setTimeout(() => {
+        document.querySelector('#foreground h1').classList.remove("fade-in-animate");
+        document.querySelector('#foreground h2').classList.remove("fade-in-animate");
+        document.querySelector('#profile-pic').classList.remove("fade-in-delay1-animate");
+        document.querySelector('#foreground p').classList.remove("fade-in-delay1-animate");
+        document.querySelectorAll('#foreground nav a').forEach(button => { button.classList.remove("fade-in-delay2-animate"); });
+        document.querySelector('#resume-button').classList.remove("fade-in-delay2-animate");
+    }, 1800);
 }
 
 function initHomepage() {
     let main = document.querySelector('main');
     let homePageTpl = document.getElementById('homepage-tpl');
     main.append(homePageTpl.content.cloneNode(true));
+
+    // hookup our new toggle
+    const btn = document.getElementById('nav-toggle');
+    btn.addEventListener('click', () => {
+        document.body.classList.toggle('menu-open');
+    });
+
+    // also close the menu if someone clicks a link
+    document.querySelectorAll('#foreground nav a')
+    .forEach(a => a.addEventListener('click', () => {
+        document.body.classList.remove('menu-open');
+    }));
 }
 
 function removeHomepage() {
