@@ -102,10 +102,10 @@ urlLocationHandler();
 /** Start of code for hompage */
 
 function addFadeInAnimations() {
+    document.querySelector('#profile-pic').className += "  fade-in-animate";
     document.querySelector('#foreground h1').className += " fade-in-delay1-animate";
     document.querySelector('#foreground h2').className += " fade-in-delay1-animate";
-    document.querySelector('#profile-pic').className += "  fade-in-animate";
-    document.querySelector('#foreground p').className += " fade-in-delay2-animate";
+    document.querySelector('#foreground p').className += " fade-in-delay1-animate";
     document.querySelector('.icon-container').className += " fade-in-delay2-animate";
 
     // only add this if screen is large enough
@@ -116,10 +116,6 @@ function addFadeInAnimations() {
    
     // add timeout to remove animation class
     setTimeout(() => {
-        document.querySelector('#foreground h1').classList.remove("fade-in-animate");
-        document.querySelector('#foreground h2').classList.remove("fade-in-animate");
-        document.querySelector('#profile-pic').classList.remove("fade-in-delay1-animate");
-        document.querySelector('#foreground p').classList.remove("fade-in-delay1-animate");
         document.querySelectorAll('#foreground nav a').forEach(button => { button.classList.remove("fade-in-delay2-animate"); });
         document.querySelector('#resume-button').classList.remove("fade-in-delay2-animate");
     }, 1800);
