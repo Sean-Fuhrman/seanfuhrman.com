@@ -3,6 +3,7 @@
   --text-highlight-color: #cc9767;
   --foreground-color : #212329;
   --background-color: #212329;
+  --back-text-color : white;
   --projects-text-color : white;
   --projects-background-color : #001220;
   --projects-item-text-color : white; 
@@ -13,7 +14,7 @@
   --contact-highlight-color: #c403bf;
   --blog-text-color : white;
   --blog-background-color: #001220;
-  --blog-highlight-color: #ffb800;
+  --blog-highlight-color: #d99c00;
   --publications-background-color: #001220;
   font-family: sans-serif;
   box-sizing: border-box;
@@ -77,7 +78,7 @@ header {
   padding: 1rem 1.5rem;                 /* nice tappable area */
   font-size: 1.25rem;                   /* easy to read */
   line-height: 1;                       /* keep it tight vertically */
-  color: var(--text-color);             
+  color: var(--back-text-color);             
   background-color: transparent;        
   border: 3px solid var(--projects-text-color);
   border-radius: 0.6rem;                
@@ -641,7 +642,9 @@ projects-item {
   z-index: 0;
   background: url(/assets/purple-waves.svg) repeat-x top center;
   background-size: 800px auto;
-  display: grid;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 100px;
 }
 
 #contact-content {
@@ -649,7 +652,6 @@ projects-item {
   justify-content: flex-start;
   align-items: center;
   flex-flow: column wrap;
-  margin-top: 200px;
   gap: 20px;
 }
 
@@ -726,11 +728,13 @@ projects-item {
   position: absolute;
   height : 100%;
   width: 100%;
-  color: var(--projects-text-color);
+  color: var(--blog-text-color);
   z-index: 0;
   background: url(/assets/yellow-waves.svg) repeat-x top center;
   background-size: 800px auto;
-  display: grid;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 100px;
 }
 
 
@@ -743,10 +747,11 @@ projects-item {
   align-items: flex-start;
   align-content: flex-start;
   flex-flow: row wrap;
-  margin-top: 200px;
   width: min(65vw, 600px);
   margin-left: auto;
   margin-right: auto;
+  color : var(--blog-text-color);
+  text-decoration-color: var(--blog-highlight-color);
 }
 
 #blog-container h3 {
@@ -810,6 +815,106 @@ projects-item {
 #reading-list-container li {
   margin-bottom: 8px;
 } */
+ 
+
+/* ────────────────────────────────────────────────────────────────────────── */
+/* Markdown blog post styles */
+.markdown-body {
+  /* constrain line-length & center */
+  max-width: 65ch;
+  margin: 2rem 0 auto;
+  padding: 0 1rem;
+
+  /* comfortable reading size */
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  line-height: 1.7;
+  color: var(--blog-text-color);
+}
+
+/* Headings with a touch of your Playfair font & highlight color */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--blog-text-color-color);
+  text-decoration: underline;
+  text-decoration-color: var(--blog-highlight-color);
+  text-underline-offset: 10px;
+  margin: 1.5rem 0 1.5rem;
+  line-height: 1.2;
+}
+
+.markdown-body h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
+.markdown-body h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+.markdown-body h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+
+/* Paragraph spacing */
+.markdown-body p {
+  margin: 1rem 0;
+}
+
+/* Links */
+.markdown-body a {
+  color: var(--blog-highlight-color);
+  text-decoration: underline;
+}
+
+/* Inline code */
+.markdown-body code {
+  background-color: rgba(255,255,255,0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Code blocks */
+.markdown-body pre {
+  background-color: rgba(255,255,255,0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+/* Blockquotes */
+.markdown-body blockquote {
+  border-left: 4px solid var(--blog-highlight-color);
+  padding-left: 1rem;
+  color: #bbb;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+  margin: 1rem 0 1rem 1.5rem;
+}
+
+/* Images */
+.markdown-body img {
+  max-width: 100%;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 4px;
+}
+
+/* ── Utterances Overrides ── */
+.utterances {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.utterances-frame {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;     /* let it size to its contents */
+  min-height: 400px !important;/* reserve enough room for the widget */
+}
+
+/* ────────────────────────────────────────────────────────────────────────── */
+
 
 /* publications page css */
 #publications {

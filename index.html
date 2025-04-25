@@ -22,8 +22,7 @@
   <template id="homepage-tpl">
     <section id="homepage">
       <div id="foreground">
-        <div id="stars">
-          
+        <div id="stars">  
           <!-- <hr id="top-line"> -->
           <div id="introduction-container">
             <img id="profile-pic" src="/assets/profile_pic.jpg" alt="Sean Fuhrman">
@@ -190,8 +189,7 @@
         <div id="blog-container">
           <h3>Posts</h3>
           <div id="blog-posts">
-            <!-- <a href="/blog/My-First-Blog-Post"><p id="title">My First Blog Post</p><p id=date>1/6/24</p></a> -->
-            No Posts Yet, Coming Soon!
+            <a href="/blog/Reading-List"><p id="title">Reading List</p><p id=date>4/25/25</p></a>
           </div>
         </div>
     </section>
@@ -205,16 +203,13 @@
       </header>
         <div id="blog-container">
           <zero-md>
-              <!-- Define your own styles inside a `<style>` tag -->
-              <style>
-                * {
-                  color: white;
-                }
-              </style>
+            <template>
+              <link rel="stylesheet" href="/global.css" />
+            </template>
           </zero-md>
         </div>
         <script src="https://utteranc.es/client.js"
-          repo=" Sean-Fuhrman/seanfuhrman.com"
+          repo="Sean-Fuhrman/seanfuhrman.com"
           issue-term="pathname"
           label="Utterance-Comments"
           theme="github-light"

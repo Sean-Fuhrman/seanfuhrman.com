@@ -461,22 +461,29 @@ function init_slider() {
 
 /** Start of code for blog page */
 
+
 function openBlog(e, pushState = true) {
     //add blog page, without animations
     initBlog();
 
     //add animations
-    document.getElementById('foreground').className = "foreground-close-animate";
-    document.getElementById('homepage').className = "homepage-close-animate";
-    document.getElementById('blog').className = "open-animate";
-
-    //remove homepage after animations
-    timeoutID = window.setTimeout(() => { 
-        removeHomepage(); 
-        //reset contact page to reset animation time
-        removeBlog();
+    const fg = document.getElementById('foreground');
+    if (fg){ 
+        document.getElementById('foreground').className = "foreground-close-animate";
+        document.getElementById('homepage').className = "homepage-close-animate";
+        document.getElementById('blog').className = "open-animate";
+    
+        //remove homepage after animations
+        timeoutID = window.setTimeout(() => { 
+            removeHomepage(); 
+            //reset contact page to reset animation time
+            removeBlog();
+            initBlog();
+        }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+    } else{
+        closeBlogPost();
         initBlog();
-    }, HOMEPAGE_CLOSING_ANIMATION_TIME);
+    }
 }
 
 function initBlog() {
@@ -505,6 +512,20 @@ function openBlogPost() {
     let filename = window.location.pathname.split("/")[2];
     document.querySelector('zero-md').src = "/blog-posts/" + filename + ".md";
 }
+
+function closeBlogPost() {
+    //remove event listener to prevent multiple clicks
+    let main = document.querySelector('main');
+    let blogPostTpl = document.getElementById('blog-post-tpl');
+
+    //remove blog post
+    main.querySelector('zero-md').remove();
+    main.querySelector('iframe.utterances-frame').remove();
+    main.querySelector('section').remove();
+    //add blog page
+    initBlog();
+}
+
 
 /** End of code for blog page */
 
