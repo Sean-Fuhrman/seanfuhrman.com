@@ -72,7 +72,6 @@ const urlLocationHandler = async () => {
     }
 
     const route = urlRoutes[location] || urlRoutes["/"]; //NOTE: replace this with 404 page if i want to implement that
-
     document.querySelector('meta[name="description"]').setAttribute("content", route.description);
     document.title = route.title;
 
@@ -510,6 +509,7 @@ function openBlogPost() {
 
     //set zero-md src attribute based on URL (href of link must match file name)
     let filename = window.location.pathname.split("/")[2];
+    console.log(filename);
     document.querySelector('zero-md').src = "/blog-posts/" + filename + ".md";
     document.body.style.backgroundColor = "var(--blog-background-color)";
 }
@@ -520,9 +520,9 @@ function closeBlogPost() {
     let blogPostTpl = document.getElementById('blog-post-tpl');
 
     //remove blog post
-    main.querySelector('zero-md').remove();
-    main.querySelector('iframe.utterances-frame').remove();
-    main.querySelector('section').remove();
+    main.querySelector('zero-md')?.remove();
+    main.querySelector('iframe.utterances-frame')?.remove();
+    main.querySelector('section')?.remove();
     //add blog page
     initBlog();
 }
