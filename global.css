@@ -747,7 +747,7 @@ projects-item {
   align-items: flex-start;
   align-content: flex-start;
   flex-flow: row wrap;
-  width: min(65vw, 600px);
+  /* width: min(65vw, 600px); */
   margin-left: auto;
   margin-right: auto;
   color : var(--blog-text-color);
@@ -821,7 +821,7 @@ projects-item {
 /* Markdown blog post styles */
 .markdown-body {
   /* constrain line-length & center */
-  max-width: 65ch;
+  max-width: 80ch;
   margin: 2rem 0 auto;
   padding: 0 1rem;
 
