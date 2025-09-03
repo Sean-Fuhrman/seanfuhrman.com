@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <canvas id="canvas" width="800" height="600">
+
+    </canvas>
+    <script>
+        t = 0;
+        stars = [];
+        num_stars = 100;
+        max_size = 10;
+        // initialize stars
+        function create_stars(){
+            while(stars.length < num_stars){
+                stars.push({
+                    x : Math.random() * canvas.width,
+                    y : Math.random() * canvas.height,
+                    size : Math.random(),
+                })
+            }
+        }
+
+        function draw_stars(){
+            for(var i in stars){
+                star = stars[i];
+                var canvas = document.getElementById('canvas');
+                var c = canvas.getContext('2d');
+                c.fillStyle = "white";
+                c.moveTo(star.x,star.y);
+                c.arc(star.x, star.y, star.size * 10, 0 , Math.PI * 2);
+                c.fill();
+            }
+        }
+
+        function draw() {
+            window.requestAnimationFrame(draw);
+            create_stars();
+            console.log(stars);
+            draw_stars();
+        }
+            
+        window.requestAnimationFrame(draw);
+       
+        
+
+      
+    </script>
+    <style>
+        body {
+            background-color: black
+        }
+    </style>
+</body>
+</html>

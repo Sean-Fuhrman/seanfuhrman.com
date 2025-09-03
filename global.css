@@ -590,7 +590,7 @@ projects-item {
   transform: translate3d(0%, 0%, -200px) scale(0.8);
   transform-style: preserve-3d;
   transition: transform 0.55s ease;
-  height : 400px;
+  height : 500px;
 }
 
 /* Positions that handle moving slider  */
