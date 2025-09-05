@@ -1,6 +1,6 @@
 # Poetry
 
-This are some poems I wrote when I felt inspired. Some might have meaning behind them, some might not, and some might just be from when I was frustrated in a national park's parking lot.
+This are some poems I wrote when I felt inspired. I have never claimed to be a good poet. Some might have meaning behind them, some might not, and some might just be from when I was frustrated in a national park's parking lot.
 
 ## Winds of Life
 
