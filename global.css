@@ -217,7 +217,7 @@ header {
 /* end of Back Home animations */
 
 /* Homepage css */
-i,strong{
+#homepage i,strong{
   color: var(--text-highlight-color);
 }
 
@@ -944,18 +944,15 @@ projects-item {
   width: 100%;
   font-size: 1rem;
 }
-/* 
+
 #publications-list li {
-  flex-direction: row;
-  display: flex;
-  align-items: flex-start;
-  gap:10px;
-} */
+  margin-top: 1rem;
+}
 
 #publications-list b {
   color : var(--text-highlight-color);
 }
-/*
+
 #publications-list i {
-  color: lightpink;
-} */
+  color: white;
+}
