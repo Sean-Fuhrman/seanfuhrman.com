@@ -1,25 +1,24 @@
-# My Reading List
+# My Book List
 
-(*) indicates a <ins>must read</ins>.
 
-1. The Alchemist by Paulo Coelho (*) 
+## Must Reads
 
-    A great book that ties in religion and spirituality into a personal journy. While I'm not religious, it can resonate with many different spiritual beliefs. It is an inspiring book. 
+These must reads I feel have had a significant impact on my life:
 
-2. Tomorrow, and Tomorrow, and Tomorrow by Gabrielle Zevin(*)
-
-    I loved the characters in this book yet hated how they acted. A very entertaining read with characters that are fun to analyze.
-
-3. Remarkebly Bright Creatures by Shelby Van Pelt 
+1. The Alchemist by Paulo Coelho 
+2. The Subtle Art of Not Giving a F*ck by Mark Manson
    
-   Made me not want to eat octopus ever again.
+## Amazing Reads
 
-4. Meditations for Mortals by Oliver Burkeman
-   
-   I did not finish reading this book, but it has an interesting perspective on how to deal with human limitations. It is a philosophy for life that could help people.
+These are some amazing reads that I highly recommend:
 
-5. The Name of the Wind by Patrick Rothfuss
+1. Remarkably Bright Creatures by Shelby Van Pelt
+2. The Name of the Wind by Patrick Rothfuss
+3. Tomorrow, and Tomorrow, and Tomorrow by Gabrielle Zevin
 
-    I could not put this book down once I started. An engaging fantasy tale that has a hogwarts-like school with more adult themes. 
-    
+## Other Notable Reads
+These are other notable reads that I have enjoyed:
 
+1. Red Rising by Pierce Brown [ I've read the first three books in the series ]
+2. Meditations for Mortals by Oliver Burkeman
+3. Abundance by Ezra Klein and Derek Thompson
