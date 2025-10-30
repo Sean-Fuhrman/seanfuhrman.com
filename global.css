@@ -747,7 +747,7 @@ projects-item {
   align-items: flex-start;
   align-content: flex-start;
   flex-flow: row wrap;
-  /* width: min(65vw, 600px); */
+  width: min(65vw, 600px);
   margin-left: auto;
   margin-right: auto;
   color : var(--blog-text-color);
@@ -759,6 +759,15 @@ projects-item {
   text-underline-offset : 5px;
   font-size: 2rem;
   margin-bottom: 20px;
+  margin-left: 6px;
+}
+
+#blog-container h4 {
+  text-decoration: solid underline var(--blog-highlight-color) 1px ;
+  text-underline-offset : 5px;
+  font-size: 1.5rem;
+  margin-top: 30px;
+  margin-bottom: 10px;
   margin-left: 6px;
 }
 
@@ -832,7 +841,16 @@ projects-item {
 }
 
 /* Headings with a touch of your Playfair font & highlight color */
-.markdown-body h1,
+.markdown-body h1
+{
+  font-family: 'Playfair Display', serif;
+  color: var(--blog-text-color-color);
+  text-decoration: underline;
+  text-decoration-color: var(--blog-highlight-color);
+  text-underline-offset: 10px;
+  margin: 2rem 0 1.5rem;
+  line-height: 1.2;
+}
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4 {
@@ -840,14 +858,14 @@ projects-item {
   color: var(--blog-text-color-color);
   text-decoration: underline;
   text-decoration-color: var(--blog-highlight-color);
-  text-underline-offset: 10px;
+  text-underline-offset: 5px;
   margin: 1.5rem 0 1.5rem;
   line-height: 1.2;
 }
 
 .markdown-body h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
-.markdown-body h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
-.markdown-body h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+.markdown-body h2 { font-size: clamp(1rem, 4vw, 1.5rem); }
+.markdown-body h3 { font-size: clamp(1rem, 3vw, 1.25rem); }
 
 /* Paragraph spacing */
 .markdown-body p {
