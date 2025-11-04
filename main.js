@@ -3,6 +3,22 @@ const HOMEPAGE_OPENING_ANIMATION_TIME = 600;
 
 let timeoutID;
 
+const blogPosts = new Map([
+    ["When-AI-Wants-To-Survive", {
+        title: "When AI Wants to Survive",
+        date: "2025-04-29",
+        status: "published",
+    }],
+    ["Reading-List", {
+        title: "Reading List",
+        status: "ongoing",
+    }],
+    ["Poetry", {
+        title: "Poetry",
+        status: "ongoing",
+    }],
+]);
+
 /** Start of code for routing with animations */
 document.addEventListener("click", (e) => {
     const {target} = e;
@@ -510,12 +526,98 @@ function openBlog(e, pushState = true) {
     }
 }
 
+function formatBlogPostDate(dateString) {
+    if(!dateString) {
+        return "";
+    }
+
+    const date = new Date(dateString);
+    if(Number.isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return date.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "numeric",
+        year: "2-digit",
+    });
+}
+
+function createBlogPostLink({slug, title, date}) {
+    const link = document.createElement("a");
+    link.href = `/blog/${slug}`;
+
+    const titleElement = document.createElement("p");
+    titleElement.className = "blog-post-title";
+    titleElement.textContent = title;
+    link.appendChild(titleElement);
+
+    const dateElement = document.createElement("p");
+    dateElement.className = "blog-post-date";
+    dateElement.textContent = formatBlogPostDate(date);
+    link.appendChild(dateElement);
+
+    return link;
+}
+
+function populateBlogPostList() {
+    const postListContainer = document.getElementById("blog-post-list");
+    const ongoingListContainer = document.getElementById("blog-post-ongoing-list");
+
+    if(!postListContainer && !ongoingListContainer) {
+        return;
+    }
+
+    const publishedPosts = [];
+    const ongoingPosts = [];
+
+    blogPosts.forEach((post, slug) => {
+        const status = post.status || "published";
+        const postData = {slug, title: post.title, date: post.date};
+
+        if(status === "ongoing") {
+            ongoingPosts.push(postData);
+            return;
+        }
+
+        publishedPosts.push(postData);
+    });
+
+    publishedPosts.sort((a, b) => {
+        const aTime = a.date ? new Date(a.date).getTime() : 0;
+        const bTime = b.date ? new Date(b.date).getTime() : 0;
+
+        if(aTime !== bTime) {
+            return bTime - aTime;
+        }
+
+        return a.title.localeCompare(b.title);
+    });
+
+    ongoingPosts.sort((a, b) => a.title.localeCompare(b.title));
+
+    if(postListContainer) {
+        postListContainer.innerHTML = "";
+        publishedPosts.forEach((post) => {
+            postListContainer.appendChild(createBlogPostLink(post));
+        });
+    }
+
+    if(ongoingListContainer) {
+        ongoingListContainer.innerHTML = "";
+        ongoingPosts.forEach((post) => {
+            ongoingListContainer.appendChild(createBlogPostLink(post));
+        });
+    }
+}
+
 function initBlog() {
     let main = document.querySelector('main');
     let blogTpl = document.getElementById('blog-tpl');
     main.append(blogTpl.content.cloneNode(true));
 
     document.body.style.backgroundColor = "var(--blog-background-color)";
+    populateBlogPostList();
 }
 
 function removeBlog(){
@@ -585,6 +687,22 @@ function openBlogPost(pathname = window.location.pathname) {
     if (zeroMd && slug) {
         zeroMd.src = "/blog-posts/" + slug + ".md";
     }
+    //set zero-md src attribute based on URL (href of link must match file name)
+    const slug = window.location.pathname.split("/")[2];
+    const metadata = blogPosts.get(slug);
+    if(metadata) {
+        document.title = `${metadata.title} | Blog | Sean Fuhrman`;
+    } else {
+        document.title = urlRoutes["/blog"].title;
+    }
+
+    const descriptionMeta = document.querySelector('meta[name="description"]');
+    if(descriptionMeta) {
+        const description = metadata && metadata.description ? metadata.description : urlRoutes["/blog"].description;
+        descriptionMeta.setAttribute("content", description);
+    }
+
+    document.querySelector('zero-md').src = `/blog-posts/${slug}.md`;
     document.body.style.backgroundColor = "var(--blog-background-color)";
 }
 
