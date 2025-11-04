@@ -24,34 +24,7 @@ const blogPosts = new Map([
         pageTitle: "Poetry | Sean Fuhrman",
         description: "Original poems capturing inspiration, reflection, and everyday moments.",
     }],
-    ["On-The-Brain-Mind-And-Soul", {
-        title: "On Consciousness, the Brain, Mind, and Soul",
-        status: "published",
-        pageTitle: "On Consciousness, the Brain, Mind, and Soul | Sean Fuhrman",
-        description: "Exploring questions about consciousness, its origins, and what it means to be aware.",
-    }],
 ]);
-
-/** Start of code for routing with animations */
-document.addEventListener("click", (e) => {
-    const {target} = e;
-    if(!target.matches("a")) {
-        return;
-    }
-    if(target.pathname == "/Resume.pdf") {
-        window.location.pathname = "/Resume.pdf";
-        return;
-    }
-    e.preventDefault();
-    urlRoute(e);
-});
-
-const urlRoute = (event) => {
-    event = event || window.event;
-    event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-    urlLocationHandler();
-}
 
 const urlRoutes = {
     "/" : {
@@ -93,6 +66,27 @@ const DEFAULT_BLOG_META = {
     title: "Blog | Sean Fuhrman",
     description: "Notes and general writings from Sean Fuhrman.",
 };
+
+/** Start of code for routing with animations */
+document.addEventListener("click", (e) => {
+    const {target} = e;
+    if(!target.matches("a")) {
+        return;
+    }
+    if(target.pathname == "/Resume.pdf") {
+        window.location.pathname = "/Resume.pdf";
+        return;
+    }
+    e.preventDefault();
+    urlRoute(e);
+});
+
+const urlRoute = (event) => {
+    event = event || window.event;
+    event.preventDefault();
+    window.history.pushState({}, "", event.target.href);
+    urlLocationHandler();
+}
 
 const urlLocationHandler = async () => {
     let location = window.location.pathname;
