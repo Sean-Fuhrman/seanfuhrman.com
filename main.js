@@ -8,14 +8,27 @@ const blogPosts = new Map([
         title: "When AI Wants to Survive",
         date: "2025-04-29",
         status: "published",
+        pageTitle: "When AI Wants to Survive | Sean Fuhrman",
+        description: "Reflecting on self-modifying AI systems and the instinct for digital survival.",
+        publishDate: "2025-04-29",
     }],
     ["Reading-List", {
         title: "Reading List",
         status: "ongoing",
+        pageTitle: "Reading List | Sean Fuhrman",
+        description: "A curated list of books that left a lasting impression, from must-reads to notable finds.",
     }],
     ["Poetry", {
         title: "Poetry",
         status: "ongoing",
+        pageTitle: "Poetry | Sean Fuhrman",
+        description: "Original poems capturing inspiration, reflection, and everyday moments.",
+    }],
+    ["On-The-Brain-Mind-And-Soul", {
+        title: "On Consciousness, the Brain, Mind, and Soul",
+        status: "published",
+        pageTitle: "On Consciousness, the Brain, Mind, and Soul | Sean Fuhrman",
+        description: "Exploring questions about consciousness, its origins, and what it means to be aware.",
     }],
 ]);
 
@@ -79,26 +92,6 @@ const urlRoutes = {
 const DEFAULT_BLOG_META = {
     title: "Blog | Sean Fuhrman",
     description: "Notes and general writings from Sean Fuhrman.",
-};
-
-const blogPosts = {
-    "When-AI-Wants-To-Survive": {
-        title: "When AI Wants to Survive | Sean Fuhrman",
-        description: "Reflecting on self-modifying AI systems and the instinct for digital survival.",
-        publishDate: "2025-04-29",
-    },
-    "Reading-List": {
-        title: "Reading List | Sean Fuhrman",
-        description: "A curated list of books that left a lasting impression, from must-reads to notable finds.",
-    },
-    "Poetry": {
-        title: "Poetry | Sean Fuhrman",
-        description: "Original poems capturing inspiration, reflection, and everyday moments.",
-    },
-    "On-The-Brain-Mind-And-Soul": {
-        title: "On Consciousness, the Brain, Mind, and Soul | Sean Fuhrman",
-        description: "Exploring questions about consciousness, its origins, and what it means to be aware.",
-    },
 };
 
 const urlLocationHandler = async () => {
@@ -625,15 +618,18 @@ function removeBlog(){
 }
 
 function openBlogPost(pathname = window.location.pathname) {
-    const slug = pathname.split("/")[2];
-    const pageMeta = blogPosts[slug] || DEFAULT_BLOG_META;
-    const canonicalUrl = pageMeta.canonical || `${window.location.origin}/blog${slug ? `/${slug}` : ""}`;
+    const slug = pathname.split("/")[2] || "";
+    const metadata = blogPosts.get(slug);
+    const canonicalUrl = metadata?.canonical || `${window.location.origin}${slug ? `/blog/${slug}` : "/blog"}`;
+
+    const pageTitle = metadata?.pageTitle || (metadata ? `${metadata.title} | Blog | Sean Fuhrman` : DEFAULT_BLOG_META.title);
+    const description = metadata?.description || DEFAULT_BLOG_META.description;
 
     const descriptionTag = document.querySelector('meta[name="description"]');
     if (descriptionTag) {
-        descriptionTag.setAttribute("content", pageMeta.description);
+        descriptionTag.setAttribute("content", description);
     }
-    document.title = pageMeta.title;
+    document.title = pageTitle;
 
     let canonicalLink = document.querySelector('link[rel="canonical"]');
     if (!canonicalLink) {
@@ -644,12 +640,12 @@ function openBlogPost(pathname = window.location.pathname) {
     canonicalLink.setAttribute('href', canonicalUrl);
 
     document.getElementById('blog-post-structured-data')?.remove();
-    if (slug && pageMeta.description) {
+    if (slug && metadata) {
         const structuredData = {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: pageMeta.headline || pageMeta.title.replace(/ \| Sean Fuhrman$/, ""),
-            description: pageMeta.description,
+            headline: metadata.headline || metadata.title,
+            description,
             mainEntityOfPage: canonicalUrl,
             url: canonicalUrl,
             author: {
@@ -662,9 +658,9 @@ function openBlogPost(pathname = window.location.pathname) {
             },
         };
 
-        if (pageMeta.publishDate) {
-            structuredData.datePublished = pageMeta.publishDate;
-            structuredData.dateModified = pageMeta.publishDate;
+        if (metadata.publishDate) {
+            structuredData.datePublished = metadata.publishDate;
+            structuredData.dateModified = metadata.publishDate;
         }
 
         const script = document.createElement('script');
@@ -685,24 +681,9 @@ function openBlogPost(pathname = window.location.pathname) {
 
     const zeroMd = document.querySelector('zero-md');
     if (zeroMd && slug) {
-        zeroMd.src = "/blog-posts/" + slug + ".md";
-    }
-    //set zero-md src attribute based on URL (href of link must match file name)
-    const slug = window.location.pathname.split("/")[2];
-    const metadata = blogPosts.get(slug);
-    if(metadata) {
-        document.title = `${metadata.title} | Blog | Sean Fuhrman`;
-    } else {
-        document.title = urlRoutes["/blog"].title;
+        zeroMd.src = `/blog-posts/${slug}.md`;
     }
 
-    const descriptionMeta = document.querySelector('meta[name="description"]');
-    if(descriptionMeta) {
-        const description = metadata && metadata.description ? metadata.description : urlRoutes["/blog"].description;
-        descriptionMeta.setAttribute("content", description);
-    }
-
-    document.querySelector('zero-md').src = `/blog-posts/${slug}.md`;
     document.body.style.backgroundColor = "var(--blog-background-color)";
 }
 
