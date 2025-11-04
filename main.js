@@ -60,6 +60,31 @@ const urlRoutes = {
     },
 }
 
+const DEFAULT_BLOG_META = {
+    title: "Blog | Sean Fuhrman",
+    description: "Notes and general writings from Sean Fuhrman.",
+};
+
+const blogPosts = {
+    "When-AI-Wants-To-Survive": {
+        title: "When AI Wants to Survive | Sean Fuhrman",
+        description: "Reflecting on self-modifying AI systems and the instinct for digital survival.",
+        publishDate: "2025-04-29",
+    },
+    "Reading-List": {
+        title: "Reading List | Sean Fuhrman",
+        description: "A curated list of books that left a lasting impression, from must-reads to notable finds.",
+    },
+    "Poetry": {
+        title: "Poetry | Sean Fuhrman",
+        description: "Original poems capturing inspiration, reflection, and everyday moments.",
+    },
+    "On-The-Brain-Mind-And-Soul": {
+        title: "On Consciousness, the Brain, Mind, and Soul | Sean Fuhrman",
+        description: "Exploring questions about consciousness, its origins, and what it means to be aware.",
+    },
+};
+
 const urlLocationHandler = async () => {
     let location = window.location.pathname;
     if(location.length == 0) {
@@ -497,20 +522,69 @@ function removeBlog(){
     document.getElementById('blog').remove(); 
 }
 
-function openBlogPost() {
-    let main = document.querySelector('main');
-    let blogPostTpl = document.getElementById('blog-post-tpl');
+function openBlogPost(pathname = window.location.pathname) {
+    const slug = pathname.split("/")[2];
+    const pageMeta = blogPosts[slug] || DEFAULT_BLOG_META;
+    const canonicalUrl = pageMeta.canonical || `${window.location.origin}/blog${slug ? `/${slug}` : ""}`;
 
-    // to ensure no glitching get rid of other content, this is OK because blog 
+    const descriptionTag = document.querySelector('meta[name="description"]');
+    if (descriptionTag) {
+        descriptionTag.setAttribute("content", pageMeta.description);
+    }
+    document.title = pageMeta.title;
+
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+        canonicalLink = document.createElement('link');
+        canonicalLink.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', canonicalUrl);
+
+    document.getElementById('blog-post-structured-data')?.remove();
+    if (slug && pageMeta.description) {
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: pageMeta.headline || pageMeta.title.replace(/ \| Sean Fuhrman$/, ""),
+            description: pageMeta.description,
+            mainEntityOfPage: canonicalUrl,
+            url: canonicalUrl,
+            author: {
+                "@type": "Person",
+                name: "Sean Fuhrman",
+            },
+            publisher: {
+                "@type": "Person",
+                name: "Sean Fuhrman",
+            },
+        };
+
+        if (pageMeta.publishDate) {
+            structuredData.datePublished = pageMeta.publishDate;
+            structuredData.dateModified = pageMeta.publishDate;
+        }
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.id = 'blog-post-structured-data';
+        script.textContent = JSON.stringify(structuredData, null, 2);
+        document.head.appendChild(script);
+    }
+
+    const main = document.querySelector('main');
+    const blogPostTpl = document.getElementById('blog-post-tpl');
+
+    // to ensure no glitching get rid of other content, this is OK because blog
     // post never opens with animations
     document.querySelectorAll("main section").forEach((e) => e.remove());
     window.clearTimeout(timeoutID);
     main.append(blogPostTpl.content.cloneNode(true));
 
-    //set zero-md src attribute based on URL (href of link must match file name)
-    let filename = window.location.pathname.split("/")[2];
-    console.log(filename);
-    document.querySelector('zero-md').src = "/blog-posts/" + filename + ".md";
+    const zeroMd = document.querySelector('zero-md');
+    if (zeroMd && slug) {
+        zeroMd.src = "/blog-posts/" + slug + ".md";
+    }
     document.body.style.backgroundColor = "var(--blog-background-color)";
 }
 
