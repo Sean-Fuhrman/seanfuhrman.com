@@ -785,6 +785,10 @@ projects-item {
   text-decoration: none;
 }
 
+#blog-posts a p {
+  margin: 0;
+}
+
 @keyframes underline-animate {
   from{
 
