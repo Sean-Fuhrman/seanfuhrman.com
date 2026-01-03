@@ -495,7 +495,7 @@ function openBlog(e, pushState = true) {
 
     //add animations
     const fg = document.getElementById('foreground');
-    if (fg){ 
+    if (fg){ // Coming from home page
         document.getElementById('foreground').className = "foreground-close-animate";
         document.getElementById('homepage').className = "homepage-close-animate";
         document.getElementById('blog').className = "open-animate";
@@ -507,9 +507,8 @@ function openBlog(e, pushState = true) {
             removeBlog();
             initBlog();
         }, HOMEPAGE_CLOSING_ANIMATION_TIME);
-    } else{
+    } else{ // coming from blog post
         closeBlogPost();
-        initBlog();
     }
 }
 
@@ -684,14 +683,11 @@ function openBlogPost(pathname = window.location.pathname) {
 function closeBlogPost() {
     //remove event listener to prevent multiple clicks
     let main = document.querySelector('main');
-    let blogPostTpl = document.getElementById('blog-post-tpl');
-
+    
     //remove blog post
     main.querySelector('zero-md')?.remove();
     main.querySelector('iframe.utterances-frame')?.remove();
     main.querySelector('section')?.remove();
-    //add blog page
-    initBlog();
 }
 
 
