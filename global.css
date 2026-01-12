@@ -595,41 +595,32 @@ projects-item {
 
 /* Positions that handle moving slider  */
 .position1 {
-  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(-55%, 0%, -120px) scale(0.8);
   color: lightgrey;
 }
 
 .position2 {
-  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(-25%, 0%, -60px) scale(0.9);
   color: lightgrey;
-
-
 }
 
 .position3 {
-  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(0%, 0%, 0px) scale(1.0);
 }
 
 .position4 {
-  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(25%, 0%, -60px) scale(0.9);
   color: lightgrey;
-
 }
 
 .position5 {
-  box-shadow: 0 25px 50px rgba(0,0,0, 50%);
   opacity: 1;
   transform: translate3d(55%, 0%, -120px )  scale(0.8);
   color: lightgrey;
-
 }
 
 /** contact page css **/
@@ -739,15 +730,14 @@ projects-item {
 
 
 #blog-posts {
-  width: 100%;
+  width: 60%;
 }
 
 #blog-container {
   display: flex;
-  align-items: flex-start;
-  align-content: flex-start;
+  justify-content: center;
   flex-flow: row wrap;
-  width: min(65vw, 600px);
+  width: 85vw;
   margin-left: auto;
   margin-right: auto;
   color : var(--blog-text-color);
@@ -772,7 +762,7 @@ projects-item {
 }
 
 #blog-posts a {
-  width:100%;
+  width: 100%;
   background-color: #252b2f;
   display: flex;
   flex-flow: row nowrap;

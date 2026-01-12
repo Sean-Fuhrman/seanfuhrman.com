@@ -43,7 +43,7 @@ I felt free, and comfortable.
 But the bodies were still there, \
 rotting in the field. 
 
-## Parking Lot
+## Mount Rainier 
 
 Deep in a forest of earth, \
 along side mountains and trees, \
@@ -56,12 +56,12 @@ their cold metal shells.
 
 Surrounded by green meadows, \
 and icy mountain tops. \
-The beautiful sun shines upone the \
+The beautiful sun shines upon the \
 dark parking lot.
 
 What brought us here? \
 To fight over spots of concrete \
-that define our day. \
+that define our day. 
 
 In this quiet forest \
 we are the noise. 
