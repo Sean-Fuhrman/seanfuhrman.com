@@ -152,6 +152,8 @@ function initHomepage() {
     let homePageTpl = document.getElementById('homepage-tpl');
     main.append(homePageTpl.content.cloneNode(true));
 
+    document.body.style.backgroundColor = "var(--background-color)";
+
     // hookup our new toggle
     const btn = document.getElementById('nav-toggle');
     btn.addEventListener('click', () => {

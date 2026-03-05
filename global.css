@@ -495,7 +495,7 @@ header {
 
 @media screen and (max-width: 750px) {
   #projects {
-    grid-template-rows: 200px 50px 420px;
+    grid-template-rows: 120px 50px 1fr;
     grid-template-columns: 1fr 1fr;
   }
   #projects header {
@@ -521,6 +521,10 @@ header {
     align-self: center;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
+  }
+  projects-item {
+    width: 65%;
+    height: 400px;
   }
 }
 
@@ -773,6 +777,21 @@ projects-item {
   cursor: pointer;
   color: var(--blog-text-color);
   text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  #blog, #blog-post {
+    gap: 40px;
+  }
+  #blog-posts {
+    width: 100%;
+  }
+  #blog-container {
+    width: 92vw;
+  }
+  .markdown-body {
+    padding: 0 0.5rem;
+  }
 }
 
 #blog-posts a p {
