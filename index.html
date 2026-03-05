@@ -78,8 +78,7 @@
           </button>
 
           <nav>
-            <a id="resume-button" class="homepage-button" href="/Resume.pdf">Resume</a>
-            <a id="publications-button" class="homepage-button" href="/publications">Publications</a>
+            <a id="resume-button" class="homepage-button" href="/resume">Resume</a>
             <a id="projects-button" class="homepage-button" href="/projects">Projects</a>
             <a id="blog-button" class="homepage-button" href="/blog">Blog</a>
             <a id="contact-button" class="homepage-button" href="/contact">Contact</a>
@@ -229,32 +228,44 @@
         </script>
     </section>
   </template>
-  <template id="publications-tpl">
-    <section id="publications">
+  <template id="resume-tpl">
+    <section id="resume">
       <header>
-        <h2>Publications</h2>
+        <h2>Resume</h2>
         <a class="back-home-button" href="/">Back Home</a>
       </header>
-      <div id="publications-container">
-        <div id="publications-list">
+      <div id="resume-container">
+        <div id="resume-about">
+          <h3>About Me</h3>
+          <p>I'm a Software Engineer at <strong>Venator Solutions</strong>, where I design and build distributed, 
+            multi-agent reinforcement learning systems for autonomous decision-making. I recently completed my 
+            M.S. in Electrical Engineering (Data Science & Machine Learning) at UC San Diego, where I also 
+            researched continual learning, novelty detection, and hyperdimensional computing at the 
+            <strong>System Energy Efficiency Lab</strong>.</p>
+          <a id="resume-download" href="/Resume.pdf" download>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Resume (PDF)
+          </a>
+        </div>
+
+        <div id="resume-publications">
+          <h3>Publications</h3>
           <ul>
             <li>
               <p>
                 <b>S. Fuhrman</b>, O. Gungor and T. Rosing,<br>
-                "CND-IDS: Continual Novelty Detection for Intrusion Detection Systems,"<br>
-                <i>2025 62nd ACM/IEEE Design Automation Conference (DAC)</i>, pp. 1-7, 2025.<br>
+                <a href="https://dl.acm.org/doi/10.1109/DAC63849.2025.11132541" target="_blank" rel="noopener noreferrer">"CND-IDS: Continual Novelty Detection for Intrusion Detection Systems,"</a><br>
+                <i>2025 62nd ACM/IEEE Design Automation Conference (DAC)</i>, pp. 1-7, 2025.
               </p>
             </li>
-
             <li>
-              <p>W. Xu, <b>S. Fuhrman</b>, K. Fan, S. Pinge, W.-C. Chen and T. Rosing, 
-                "HyperMetric: Efficient Hyperdimensional Computing With Metric Learning for Robust Edge Intelligence," 
+              <p>W. Xu, <b>S. Fuhrman</b>, K. Fan, S. Pinge, W.-C. Chen and T. Rosing,
+                <a href="https://ieeexplore.ieee.org/document/11032149" target="_blank" rel="noopener noreferrer">"HyperMetric: Efficient Hyperdimensional Computing With Metric Learning for Robust Edge Intelligence,"</a>
                 <i>IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems</i>, IEEE, 2025.</p>
             </li>
-            
             <li>
-              <p>W. Xu, V. Swaminathan, S. Pinge, <b>S. Fuhrman</b> and T. Rosing, 
-                "HyperMetric: Robust Hyperdimensional Computing on Error-prone Memories using Metric Learning," 
+              <p>W. Xu, V. Swaminathan, S. Pinge, <b>S. Fuhrman</b> and T. Rosing,
+                <a href="https://www.computer.org/csdl/proceedings-article/iccd/2023/429100a243/1T97toxFMMo" target="_blank" rel="noopener noreferrer">"HyperMetric: Robust Hyperdimensional Computing on Error-prone Memories using Metric Learning,"</a>
                 <i>2023 IEEE 41st International Conference on Computer Design (ICCD)</i>, Washington, DC, USA, 2023 pp. 243-246.</p>
             </li>
           </ul>

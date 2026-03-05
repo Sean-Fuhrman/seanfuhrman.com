@@ -54,11 +54,11 @@ const urlRoutes = {
         openWithAnimations: openContact,
         openWithoutAnimtions: initContact,
     },
-    "/publications" : {
-        title : "Publications | Sean Fuhrman",
-        description : "My publications",
-        openWithAnimations: openPublications,
-        openWithoutAnimtions: initPublications,
+    "/resume" : {
+        title : "Resume | Sean Fuhrman",
+        description : "Resume and publications of Sean Fuhrman",
+        openWithAnimations: openResume,
+        openWithoutAnimtions: initResume,
     },
 }
 
@@ -73,9 +73,8 @@ document.addEventListener("click", (e) => {
     if(!target.matches("a")) {
         return;
     }
-    if(target.pathname == "/Resume.pdf") {
-        window.location.pathname = "/Resume.pdf";
-        return;
+    if(target.hasAttribute("download") || target.getAttribute("target") === "_blank") {
+        return; // let the browser handle download and external links natively
     }
     e.preventDefault();
     urlRoute(e);
@@ -752,36 +751,36 @@ function removeContact() {
 }
 /** End of code for contact page */
 
-/** Start of code for publications page */
+/** Start of code for resume page */
 
-function openPublications(e){
-    //add publications page, without animations
-    initPublications();
+function openResume(e){
+    //add resume page, without animations
+    initResume();
 
     //add animations
     document.getElementById('foreground').className = "foreground-close-animate";
     document.getElementById('homepage').className = "homepage-close-animate";
-    document.getElementById('publications').className = "open-animate";
+    document.getElementById('resume').className = "open-animate";
 
     //remove homepage after animations
-    timeoutID = window.setTimeout(() => { 
-        removeHomepage(); 
-        //reset contact page to reset animation time
-        removePublications();
-        initPublications();
+    timeoutID = window.setTimeout(() => {
+        removeHomepage();
+        //reset resume page to reset animation time
+        removeResume();
+        initResume();
 
     }, HOMEPAGE_CLOSING_ANIMATION_TIME);
 }
 
-function initPublications() {
+function initResume() {
     let main = document.querySelector('main');
-    let publicationsTpl = document.getElementById('publications-tpl');
-    main.append(publicationsTpl.content.cloneNode(true));
+    let resumeTpl = document.getElementById('resume-tpl');
+    main.append(resumeTpl.content.cloneNode(true));
 
     document.body.style.backgroundColor = "var(--publications-background-color)";
 }
 
-function removePublications() {
-    document.getElementById('publications').remove(); 
+function removeResume() {
+    document.getElementById('resume').remove();
 }
-/** End of code for publications page */
+/** End of code for resume page */
