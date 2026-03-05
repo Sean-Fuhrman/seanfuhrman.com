@@ -369,6 +369,10 @@ function initProjects() {
     document.getElementById('left-button').addEventListener('click', moveSliderRight);
     document.getElementById('right-button').addEventListener('click', moveSliderLeft);
 
+    let slider = document.getElementById('slider');
+    slider.addEventListener('touchstart', handleTouchStart, { passive: true });
+    slider.addEventListener('touchend', handleTouchEnd, { passive: true });
+
     document.body.style.backgroundColor = "var(--projects-background-color)";
 
     init_slider();
@@ -377,7 +381,10 @@ function initProjects() {
 function removeProjects() {
     document.getElementById('right-button').removeEventListener('click', moveSliderRight);
     document.getElementById('left-button').removeEventListener('click', moveSliderLeft);
-    document.getElementById('projects').remove(); 
+    let slider = document.getElementById('slider');
+    slider.removeEventListener('touchstart', handleTouchStart);
+    slider.removeEventListener('touchend', handleTouchEnd);
+    document.getElementById('projects').remove();
 }
 
 function moveSliderRight () {
@@ -482,6 +489,23 @@ function init_slider() {
     }
     sliderCounter.innerHTML = sliderCounterInnerHTMl;
     update_slider_counter("none", sliderItemsLength);
+}
+
+function handleTouchStart(e) {
+    handleTouchStart.startX = e.touches[0].clientX;
+}
+
+function handleTouchEnd(e) {
+    const deltaX = e.changedTouches[0].clientX - handleTouchStart.startX;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(deltaX) >= minSwipeDistance) {
+        if (deltaX < 0) {
+            moveSliderLeft();   // swipe left → show next project
+        } else {
+            moveSliderRight();  // swipe right → show previous project
+        }
+    }
 }
 
 /** End of code for projects page */
