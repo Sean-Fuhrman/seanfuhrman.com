@@ -307,9 +307,12 @@ class projectsItem extends HTMLElement{
                     background: var(--projects-item-background-color);
                     padding-bottom: 10px;
                     padding-top : 10px;
-                    padding-left : 5px;
-                    padding-right : 5px;
+                    padding-left : 10px;
+                    padding-right : 10px;
                     gap : 10px;
+                    box-sizing: border-box;
+                    overflow-y: auto;
+                    height: 100%;
                 }
                 #media {
                     width: 80%;
