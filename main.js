@@ -315,7 +315,7 @@ class projectsItem extends HTMLElement{
                     height: 100%;
                 }
                 #media {
-                    width: 80%;
+                    width: 200px;
                 }
                 div h3 {
                     text-align : center;
