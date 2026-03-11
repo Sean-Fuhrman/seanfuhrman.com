@@ -523,7 +523,7 @@ projects-item {
 
 @media screen and (min-width: 750px) {
   #projects {
-    grid-template-rows: 200px 50px 420px;
+    grid-template-rows: 175px 50px 420px;
     grid-template-columns: 1fr 650px 1fr;
   }
 
@@ -577,7 +577,7 @@ projects-item {
 
 @media screen and (max-width: 749px) {
   #projects {
-    grid-template-rows: 150px 50px 1fr;
+    grid-template-rows: 175px 50px 1fr;
     grid-template-columns: 1fr 70% 1fr;
   }
 
